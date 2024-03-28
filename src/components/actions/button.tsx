@@ -48,6 +48,7 @@ export class Button extends React.Component<ButtonProps> {
 				[`${Button.modes[mode]}`]: mode,
 				[`${Button.sizes[size]}`]: size,
 				"btn-block": block,
+				"btn-outline": outline,
 			},
 			this.props.className,
 		);

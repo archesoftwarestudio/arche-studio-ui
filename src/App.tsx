@@ -7,7 +7,7 @@ export default function App() {
 				mode="primary"
 				block
 				onClick={() => {
-					alert("chupala");
+					alert("ArcheUI es la bomba");
 				}}
 			>
 				Primary
