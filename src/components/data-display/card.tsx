@@ -1,7 +1,10 @@
 import clsx from "clsx";
 import React from "react";
 
-type ActionProps = React.ReactNode;
+type ActionProps = {
+  text: string;
+  onClick: () => void;
+};
 
 export interface CardProps extends React.ComponentProps<"div"> {
   title: string;
@@ -101,11 +104,19 @@ export class Card extends React.Component<CardProps> {
           <p>{this.props.body}</p>
           {this.props.primaryAction && (
             <div className="card-actions justify-end">
-              {this.props.primaryAction}
+              <button
+                className="btn btn-primary"
+                onClick={this.props.primaryAction.onClick}
+              >
+                {this.props.primaryAction.text}
+              </button>
               {this.props.secondaryAction && (
-                <div className="card-actions justify-end">
-                  {this.props.secondaryAction}
-                </div>
+                <button
+                  className="btn btn-secondary"
+                  onClick={this.props.primaryAction.onClick}
+                >
+                  {this.props.primaryAction.text}
+                </button>
               )}
             </div>
           )}

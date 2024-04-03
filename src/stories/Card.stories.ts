@@ -1,13 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Card, CardProps } from "../components/data-display";
-import { Button } from "../components/actions";
-
-const actionButton: Button = new Button({
-  children: "Buy Now",
-  onClick: () => {
-    alert("You bought the shoes!");
-  },
-});
 
 export default {
   title: "Data-Display/Card",
@@ -23,7 +15,12 @@ export default {
     imageUrl:
       "https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg",
     imageAlt: "Shoes",
-    primaryAction: actionButton.render(),
+    primaryAction: {
+      text: "Buy Now",
+      onClick: () => {
+        alert("You bought the shoes!");
+      },
+    },
   },
 } as Meta;
 
