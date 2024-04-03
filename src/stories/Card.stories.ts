@@ -46,3 +46,21 @@ export const Overlay: Story = {
     imageMode: "overlay",
   },
 };
+
+export const Compact: Story = {
+  args: {
+    compact: true,
+  },
+};
+
+export const Neutral: Story = {
+  args: {
+    neutral: true,
+  },
+};
+
+export const Horizontal: Story = {
+  args: {
+    horizontal: true,
+  },
+};
