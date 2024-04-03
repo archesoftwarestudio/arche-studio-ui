@@ -14,7 +14,7 @@ export default {
           primary: "#02875f",
           secondary: "#036046",
           accent: "rgb(255, 225, 217)",
-          neutral: "#02875f",
+          neutral: "#63d7b1",
           "base-100": "#fcfcfa",
           "--rounded-box": "1rem", // border radius rounded-box utility class, used in card and other large boxes
           "--rounded-btn": "0.5rem", // border radius rounded-btn utility class, used in buttons and similar element
