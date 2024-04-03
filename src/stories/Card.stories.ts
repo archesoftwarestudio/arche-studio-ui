@@ -4,8 +4,6 @@ import { Button } from "../components/actions";
 
 const actionButton: Button = new Button({
   children: "Buy Now",
-  mode: "primary",
-  size: "large",
   onClick: () => {
     alert("You bought the shoes!");
   },
@@ -22,7 +20,7 @@ export default {
   args: {
     title: "Nikes on my feet",
     body: "Make my style feel complete",
-    image:
+    imageUrl:
       "https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg",
     imageAlt: "Shoes",
     primaryAction: actionButton.render(),
@@ -31,8 +29,20 @@ export default {
 
 type Story = StoryObj<CardProps>;
 
-export const Primary: Story = {
+export const Standard: Story = {
   args: {
-    imageMode: "fill",
+    imageMode: "standard",
+  },
+};
+
+export const Paddings: Story = {
+  args: {
+    imageMode: "padding",
+  },
+};
+
+export const Overlay: Story = {
+  args: {
+    imageMode: "overlay",
   },
 };

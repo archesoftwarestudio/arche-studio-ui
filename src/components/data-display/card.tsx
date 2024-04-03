@@ -1,17 +1,14 @@
 import clsx from "clsx";
 import React from "react";
-import { Button } from "../actions";
 
-interface ActionProps {
-  children: React.ReactNode;
-}
+type ActionProps = React.ReactNode;
 
 export interface CardProps extends React.ComponentProps<"div"> {
   title: string;
   body: string;
-  image?: string;
+  imageUrl?: string;
   imageAlt?: string;
-  imageMode?: "fill" | "padding" | "overlay";
+  imageMode?: "standard" | "padding" | "overlay";
   primaryAction?: ActionProps;
   secondaryAction?: ActionProps;
   compact?: boolean;
@@ -24,9 +21,9 @@ export class Card extends React.Component<CardProps> {
   static defaultProps = {
     title: "",
     body: "",
-    image: "",
+    imageUrl: "",
     imageAlt: "",
-    imageMode: "fill",
+    imageMode: "standard",
     primaryAction: null,
     secondaryAction: null,
     compact: false,
@@ -35,50 +32,79 @@ export class Card extends React.Component<CardProps> {
     horizontal: false,
   };
 
-  private imageModes = {
-    fill: "btn-primary",
-    padding: "btn-secondary",
-    overlay: "btn-neutral",
+  private cardImageMode = {
+    standard: "",
+    padding: "",
+    overlay: "image-full",
+  };
+
+  private figureImageMode = {
+    standard: "",
+    padding: "px-10 pt-10",
+    overlay: "",
+  };
+
+  private imageMode = {
+    standard: "",
+    padding: "rounded-xl",
+    overlay: "",
+  };
+
+  private bodyImageMode = {
+    standard: "",
+    padding: "items-center text-center",
+    overlay: "",
   };
 
   render() {
-    const { imageMode, ...htmlProps } = this.props;
+    const { imageMode, horizontal, ...htmlProps } = this.props;
 
     const cardClass = clsx(
-      "card w-96",
+      "card",
       {
         "card-compact": this.props.compact,
         "bg-neutral text-neutral-content": this.props.neutral,
         "bg-base-100": !this.props.neutral,
         "shadow-xl": this.props.shadow,
+        [`${this.cardImageMode[imageMode!]}`]: imageMode,
+        "card-side": horizontal,
+        "w-96": !horizontal,
       },
       this.props.className
     );
 
-    const imageClass = clsx(
-      "card",
-      {
-        [`${this.imageModes[imageMode!]}`]: imageMode,
-      },
-      this.props.className
-    );
+    const figureClass = clsx("", {
+      [`${this.figureImageMode[imageMode!]}`]: imageMode,
+    });
+
+    const imageClass = clsx("", {
+      [`${this.imageMode[imageMode!]}`]: imageMode,
+    });
+
+    const bodyClass = clsx("card-body", {
+      [`${this.bodyImageMode[imageMode!]}`]: imageMode,
+    });
 
     return (
       <div className={cardClass} {...htmlProps}>
-        <figure className={imageClass}>
-          <img src={this.props.image} alt={this.props.imageAlt} />
-        </figure>
-        <div className="card-body ">
+        {this.props.imageUrl && (
+          <figure className={figureClass}>
+            <img
+              src={this.props.imageUrl}
+              alt={this.props.imageAlt}
+              className={imageClass}
+            />
+          </figure>
+        )}
+        <div className={bodyClass}>
           <h2 className="card-title">{this.props.title}</h2>
           <p>{this.props.body}</p>
           {this.props.primaryAction && (
             <div className="card-actions justify-end">
-              <Button>{this.props.primaryAction?.children}</Button>
+              {this.props.primaryAction}
               {this.props.secondaryAction && (
                 <div className="card-actions justify-end">
-                  <Button mode={"secondary"}>
-                    {this.props.secondaryAction.children}
-                  </Button>
+                  {this.props.secondaryAction}
                 </div>
               )}
             </div>
