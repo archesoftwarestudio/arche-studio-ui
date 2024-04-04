@@ -45,7 +45,7 @@ export const Button: React.FC<ButtonProps> = (
   );
 
   return (
-    <button {...htmlProps} className={className}>
+    <button className={className} {...htmlProps}>
       {children || <span>{"Button"}</span>}
     </button>
   );
