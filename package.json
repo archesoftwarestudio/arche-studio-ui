@@ -1,7 +1,8 @@
 {
-  "name": "archeui",
-  "private": true,
-  "version": "0.0.0",
+  "name": "arche-studio-ui",
+  "private": false,
+  "version": "0.0.1",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,13 +13,17 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@storybook/addon-mdx-gfm": "^8.0.5",
-    "@storybook/addon-themes": "^8.0.5",
-    "clsx": "^2.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "clsx": "^2.1.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@storybook/addon-mdx-gfm": "^8.0.5",
+    "@storybook/addon-themes": "^8.0.5",
     "@chromatic-com/storybook": "^1.2.25",
     "@storybook/addon-essentials": "^8.0.5",
     "@storybook/addon-interactions": "^8.0.5",
