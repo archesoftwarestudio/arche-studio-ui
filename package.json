@@ -1,5 +1,5 @@
 {
-	"name": "arche-ui-studio",
+	"name": "@archesoftwarestudio/arche-ui-studio",
 	"private": false,
 	"version": "0.0.3",
 	"main": "dist/index.js",
@@ -18,6 +18,9 @@
 	"peerDependencies": {
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
 	},
 	"devDependencies": {
 		"react": "^18.2.0",
