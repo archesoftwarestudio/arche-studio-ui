@@ -15,6 +15,7 @@ export default {
     imageUrl:
       "https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg",
     imageAlt: "Shoes",
+    shadow: true,
     primaryAction: {
       text: "Buy Now",
       onClick: () => {
@@ -26,9 +27,9 @@ export default {
 
 type Story = StoryObj<CardProps>;
 
-export const Standard: Story = {
+export const Default: Story = {
   args: {
-    imageMode: "standard",
+    imageMode: "default",
   },
 };
 
@@ -59,5 +60,11 @@ export const Neutral: Story = {
 export const Horizontal: Story = {
   args: {
     horizontal: true,
+  },
+};
+
+export const Responsive: Story = {
+  args: {
+    responsive: true,
   },
 };

@@ -16,28 +16,28 @@ type Story = StoryObj<ButtonProps>;
 export const Primary: Story = {
   args: {
     children: "Button",
-    mode: "primary",
+    variant: "primary",
   },
 };
 
 export const Secondary: Story = {
   args: {
     children: "Button",
-    mode: "secondary",
+    variant: "secondary",
   },
 };
 
 export const Neutral: Story = {
   args: {
     children: "Button",
-    mode: "neutral",
+    variant: "neutral",
   },
 };
 
 export const Accent: Story = {
   args: {
     children: "Button",
-    mode: "accent",
+    variant: "accent",
   },
 };
 
