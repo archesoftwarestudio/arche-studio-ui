@@ -9,9 +9,17 @@ export interface ButtonProps extends React.ComponentProps<"button"> {
   block?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = (
-  props: ButtonProps
-) => {
+export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
+  const {
+    variant = "primary",
+    block = false,
+    outline = false,
+    size = "medium",
+    children = <span>{"Button"}</span>,
+    className,
+    ...htmlProps
+  } = props;
+
   const variants = {
     primary: "btn-primary",
     secondary: "btn-secondary",
@@ -25,9 +33,7 @@ export const Button: React.FC<ButtonProps> = (
     small: "btn-sm",
   };
 
-  const { variant = 'primary', block = false, outline = false, size ='medium', children = <span>{"Button"}</span>, ...htmlProps } = props;
-
-  const className = clsx(
+  const componentClass = clsx(
     "btn",
     {
       [`${variants[variant!]}`]: variant,
@@ -35,11 +41,11 @@ export const Button: React.FC<ButtonProps> = (
       "btn-block": block,
       "btn-outline": outline,
     },
-    props.className
+    className
   );
 
   return (
-    <button className={className} {...htmlProps}>
+    <button className={componentClass} {...htmlProps}>
       {children || <span>{"Button"}</span>}
     </button>
   );

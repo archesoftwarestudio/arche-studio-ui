@@ -21,20 +21,24 @@ export interface CardProps extends React.ComponentProps<"div"> {
   responsive?: boolean;
 }
 
-export const Card: React.FC<CardProps> = (
-  props: CardProps = {
-    title: "",
-    body: "",
-    imageUrl: "",
-    imageAlt: "",
-    imageMode: "default",
-    compact: false,
-    neutral: false,
-    shadow: true,
-    horizontal: false,
-    responsive: false,
-  }
-) => {
+export const Card: React.FC<CardProps> = (props: CardProps) => {
+  const {
+    imageMode = "default",
+    horizontal = false,
+    compact = false,
+    neutral = false,
+    shadow = true,
+    body = "",
+    title = "",
+    imageAlt = "",
+    imageUrl = "",
+    primaryAction,
+    secondaryAction,
+    responsive = false,
+    className,
+    ...htmlProps
+  } = props;
+
   const cardImageModes = {
     default: "",
     padding: "",
@@ -59,22 +63,6 @@ export const Card: React.FC<CardProps> = (
     overlay: "",
   };
 
-  const {
-    imageMode,
-    horizontal,
-    compact,
-    neutral,
-    shadow,
-    body,
-    title,
-    imageAlt,
-    imageUrl,
-    primaryAction,
-    secondaryAction,
-    responsive,
-    ...htmlProps
-  } = props;
-
   const cardClass = clsx(
     "card",
     {
@@ -87,7 +75,7 @@ export const Card: React.FC<CardProps> = (
       "w-96": !responsive && !horizontal,
       "lg:card-side": responsive,
     },
-    htmlProps.className
+    className
   );
 
   const figureClass = clsx("", {

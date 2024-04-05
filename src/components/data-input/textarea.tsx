@@ -29,12 +29,13 @@ export const TextArea: React.FC<TextAreaProps> = (
   }
 ) => {
   const {
-    variant,
-    size,
-    placeholder,
-    border,
-    onChange,
-    initialValue,
+    variant = "primary",
+    size = "large",
+    placeholder = "",
+    border = true,
+    onChange = () => {},
+    initialValue = "",
+    className,
     ...htmlProps
   } = props;
 
@@ -57,19 +58,19 @@ export const TextArea: React.FC<TextAreaProps> = (
     success: "textarea-success",
   };
 
-  const className = clsx(
+  const componentClass = clsx(
     "textarea",
     {
       [`${sizes[size!]}`]: size,
       [`${variants[variant!]}`]: variant,
       "textarea-bordered": border,
     },
-    props.className
+    className
   );
 
   return (
     <textarea
-      className={className}
+      className={componentClass}
       value={value}
       onChange={(event) => {
         setValue(event.target.value);
