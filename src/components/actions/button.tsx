@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 
 export interface ButtonProps extends React.ComponentProps<"button"> {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   variant?: "primary" | "secondary" | "neutral" | "accent";
   size?: "large" | "medium" | "small";
   outline?: boolean;
@@ -10,13 +10,7 @@ export interface ButtonProps extends React.ComponentProps<"button"> {
 }
 
 export const Button: React.FC<ButtonProps> = (
-  props: ButtonProps = {
-    children: <span>{"Button"}</span>,
-    variant: "primary",
-    size: "medium",
-    outline: false,
-    block: false,
-  }
+  props: ButtonProps
 ) => {
   const variants = {
     primary: "btn-primary",
@@ -31,7 +25,7 @@ export const Button: React.FC<ButtonProps> = (
     small: "btn-sm",
   };
 
-  const { variant, block, outline, size, children, ...htmlProps } = props;
+  const { variant = 'primary', block = false, outline = false, size ='medium', children = <span>{"Button"}</span>, ...htmlProps } = props;
 
   const className = clsx(
     "btn",
