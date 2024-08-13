@@ -6,14 +6,7 @@ export default {
   component: Modal,
   parameters: {
     layout: "centered",
-    docs: {
-      story: {
-        inline: false, // Use an iframe in Docs mode
-        iframeHeight: 400, // Adjust height based on your modal's needs
-      },
-    },
   },
-  tags: ["autodocs"],
   argTypes: {},
   args: {
     isOpen: true,
