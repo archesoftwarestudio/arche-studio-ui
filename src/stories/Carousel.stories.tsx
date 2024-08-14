@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Carousel, CarouselProps } from "../components/data-display"; // Ajusta la ruta según tu estructura de archivos
 
 export default {
-  title: "Components/Carousel",
+  title: "Data-Display/Carousel",
   component: Carousel,
   parameters: {
     layout: "centered",

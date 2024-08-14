@@ -193,9 +193,10 @@ export const Carousel: React.FC<CarouselProps> = ({
               height: vertical ? "100%" : "auto", // Ajusta la altura del slide para el modo vertical
             }}
           >
-            {/* Si el item es una imagen, se agrega la propiedad draggable={false} */}
-            {React.isValidElement(item) && item.type === "img"
-              ? React.cloneElement(item, { draggable: false })
+            {React.isValidElement(item) && "draggable" in item.props
+              ? React.cloneElement(item as React.ReactElement<any>, {
+                  draggable: false,
+                })
               : item}
           </div>
         ))}
