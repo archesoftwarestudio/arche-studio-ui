@@ -29,6 +29,12 @@ export const Carousel: React.FC<CarouselProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+  const touchEndX = useRef(0);
+  const touchEndY = useRef(0);
+  const mouseDownX = useRef(0);
+  const mouseDownY = useRef(0);
 
   const positionClasses: Record<string, string> = {
     start: "justify-start",
@@ -67,6 +73,64 @@ export const Carousel: React.FC<CarouselProps> = ({
     );
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+    touchEndY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = () => {
+    if (vertical) {
+      if (touchStartY.current - touchEndY.current > 50) {
+        nextSlide();
+      }
+
+      if (touchEndY.current - touchStartY.current > 50) {
+        prevSlide();
+      }
+    } else {
+      if (touchStartX.current - touchEndX.current > 50) {
+        nextSlide();
+      }
+
+      if (touchEndX.current - touchStartX.current > 50) {
+        prevSlide();
+      }
+    }
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    mouseDownX.current = e.clientX;
+    mouseDownY.current = e.clientY;
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    const mouseUpX = e.clientX;
+    const mouseUpY = e.clientY;
+
+    if (vertical) {
+      if (mouseDownY.current - mouseUpY > 50) {
+        nextSlide();
+      }
+
+      if (mouseUpY - mouseDownY.current > 50) {
+        prevSlide();
+      }
+    } else {
+      if (mouseDownX.current - mouseUpX > 50) {
+        nextSlide();
+      }
+
+      if (mouseUpX - mouseDownX.current > 50) {
+        prevSlide();
+      }
+    }
+  };
+
   useEffect(() => {
     if (autoplay) {
       const intervalId = setInterval(nextSlide, interval);
@@ -100,6 +164,11 @@ export const Carousel: React.FC<CarouselProps> = ({
         width: "100%", // Ocupa todo el ancho disponible del contenedor padre
         maxWidth: "100%", // Evitar desbordes
       }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
       {...htmlProps}
     >
       <div
@@ -124,7 +193,10 @@ export const Carousel: React.FC<CarouselProps> = ({
               height: vertical ? "100%" : "auto", // Ajusta la altura del slide para el modo vertical
             }}
           >
-            {item}
+            {/* Si el item es una imagen, se agrega la propiedad draggable={false} */}
+            {React.isValidElement(item) && item.type === "img"
+              ? React.cloneElement(item, { draggable: false })
+              : item}
           </div>
         ))}
       </div>
