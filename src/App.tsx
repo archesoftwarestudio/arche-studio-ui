@@ -1,9 +1,9 @@
-import { Alert } from "./components/feedback";
+import { Progress } from "./components/feedback";
 
 export default function App() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Alert message="hola mundo" type="success" />
+      <Progress color="primary" size="md" value={70} />
     </main>
   );
 }
