@@ -1,9 +1,9 @@
-import { Button } from ".";
+import { Alert } from "./components/feedback";
 
 export default function App() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Button>test</Button>
+      <Alert message="hola mundo" type="success" />
     </main>
   );
 }
