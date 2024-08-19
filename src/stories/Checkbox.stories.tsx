@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Checkbox, CheckboxProps } from "../components/data-input"; // Ajusta la ruta según tu estructura de archivos
 
 export default {
-  title: "Forms/Checkbox",
+  title: "Data-Input/Checkbox",
   component: Checkbox,
   parameters: {
     layout: "fullscreen", // Para que ocupe todo el ancho
