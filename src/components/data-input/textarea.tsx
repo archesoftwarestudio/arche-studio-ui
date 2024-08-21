@@ -1,95 +1,59 @@
 import React from "react";
 
-export interface TextAreaProps extends React.ComponentProps<"textarea"> {
-  label?: string;
-  placeholder?: string;
-  initialValue?: string;
-  border?: boolean;
-  ghost?: boolean;
-  variant?:
+export interface TextareaProps extends React.ComponentProps<"textarea"> {
+  color?:
     | "primary"
     | "secondary"
     | "accent"
     | "info"
-    | "warning"
-    | "error"
     | "success"
-    | "";
-  size?: "lg" | "md" | "sm" | "xs";
-  disabled?: boolean;
-  readOnly?: boolean;
-  required?: boolean;
-  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    | "warning"
+    | "error"; // Color classes
+  size?: "xs" | "sm" | "md" | "lg"; // Size classes
+  bordered?: boolean; // Adds border to textarea
+  ghost?: boolean; // Adds ghost style to textarea
 }
 
-export const TextArea: React.FC<TextAreaProps> = ({
-  label,
-  variant = "", // Permitir que no se defina una variante
+export const Textarea: React.FC<TextareaProps> = ({
+  color,
   size = "md",
-  placeholder = "",
-  border = false, // Estilo por defecto sin bordes
+  bordered = false,
   ghost = false,
-  disabled = false,
-  readOnly = false,
-  required = false,
-  onChange = () => {},
-  initialValue = "",
   className,
   ...htmlProps
 }) => {
-  const [value, setValue] = React.useState(initialValue);
+  // Mapping the classes for color
+  const colorClasses: Record<string, string> = {
+    primary: "textarea-primary",
+    secondary: "textarea-secondary",
+    accent: "textarea-accent",
+    info: "textarea-info",
+    success: "textarea-success",
+    warning: "textarea-warning",
+    error: "textarea-error",
+  };
 
-  // Asignación de clases para tamaño
-  const sizeClass =
-    size === "lg"
-      ? "textarea-lg"
-      : size === "sm"
-        ? "textarea-sm"
-        : size === "xs"
-          ? "textarea-xs"
-          : "textarea-md";
-
-  // Asignación de clases para variantes, permitiendo que no haya variante
-  const variantClass = variant ? `textarea-${variant}` : "";
-
-  // Asignación de clases para border y ghost
-  const borderClass = border ? "textarea-bordered" : "";
-  const ghostClass = ghost ? "textarea-ghost" : "";
-
-  // Clase para disabled
-  const disabledClass = disabled ? "cursor-not-allowed opacity-50" : "";
-
-  // Construcción de la clase final
-  const componentClass = [
-    "textarea",
-    sizeClass,
-    variantClass,
-    borderClass,
-    ghostClass,
-    disabledClass,
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
+  // Mapping the classes for size
+  const sizeClasses: Record<string, string> = {
+    xs: "textarea-xs",
+    sm: "textarea-sm",
+    md: "textarea-md",
+    lg: "textarea-lg",
+  };
 
   return (
-    <div>
-      {label && (
-        <label className="block mb-2 text-sm font-medium">{label}</label>
-      )}
-      <textarea
-        className={componentClass}
-        value={value}
-        onChange={(event) => {
-          setValue(event.target.value);
-          onChange(event);
-        }}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-        required={required}
-        {...htmlProps}
-      ></textarea>
-    </div>
+    <textarea
+      className={[
+        "textarea", // Base class
+        bordered ? "textarea-bordered" : "",
+        ghost ? "textarea-ghost" : "",
+        color ? colorClasses[color] : "",
+        sizeClasses[size], // Size class
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      {...htmlProps}
+    />
   );
 };

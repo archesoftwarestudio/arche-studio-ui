@@ -1,139 +1,159 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { TextArea, TextAreaProps } from "../components/data-input";
+import { Meta, StoryObj } from "@storybook/react";
+import { Textarea, TextareaProps } from "../components/data-input"; // Adjust path to your file structure
 
 export default {
-  title: "Data-Input/TextArea",
-  component: TextArea,
+  title: "Data-Input/Textarea",
+  component: Textarea,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {
-    variant: {
-      control: { type: "select" },
-      options: [
-        "",
-        "primary",
-        "secondary",
-        "accent",
-        "info",
-        "success",
-        "warning",
-        "error",
-      ],
+    color: {
+      control: {
+        type: "select",
+        options: [
+          "primary",
+          "secondary",
+          "accent",
+          "info",
+          "success",
+          "warning",
+          "error",
+        ],
+      },
     },
     size: {
-      control: { type: "select" },
-      options: ["lg", "md", "sm", "xs"],
+      control: {
+        type: "select",
+        options: ["xs", "sm", "md", "lg"],
+      },
     },
-    border: {
-      control: { type: "boolean" },
+    bordered: {
+      control: "boolean",
     },
     ghost: {
-      control: { type: "boolean" },
+      control: "boolean",
     },
     disabled: {
-      control: { type: "boolean" },
-    },
-    readOnly: {
-      control: { type: "boolean" },
-    },
-    required: {
-      control: { type: "boolean" },
-    },
-    placeholder: {
-      control: { type: "text" },
-    },
-    label: {
-      control: { type: "text" },
+      control: "boolean",
     },
   },
   args: {
-    variant: "", // Por defecto sin variante
+    color: undefined,
     size: "md",
-    border: false, // Estilo por defecto sin bordes
+    bordered: false,
     ghost: false,
     disabled: false,
-    readOnly: false,
-    required: false,
-    placeholder: "Enter text...",
   },
-} as Meta<TextAreaProps>;
+} as Meta<TextareaProps>;
 
-type Story = StoryObj<TextAreaProps>;
+type Story = StoryObj<TextareaProps>;
 
-export const Default: Story = {
+export const DefaultTextarea: Story = {
   args: {
-    variant: "",
+    placeholder: "Bio",
   },
 };
 
-export const Large: Story = {
+export const TextareaWithBorder: Story = {
   args: {
-    size: "lg",
+    placeholder: "Bio",
+    bordered: true,
   },
 };
 
-export const Small: Story = {
+export const GhostTextarea: Story = {
   args: {
-    size: "sm",
-  },
-};
-
-export const ExtraSmall: Story = {
-  args: {
-    size: "xs",
-  },
-};
-
-export const WithLabel: Story = {
-  args: {
-    label: "Text Area Label",
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-  },
-};
-
-export const ReadOnly: Story = {
-  args: {
-    readOnly: true,
-  },
-};
-
-export const Required: Story = {
-  args: {
-    required: true,
-  },
-};
-
-export const Ghost: Story = {
-  args: {
+    placeholder: "Bio",
     ghost: true,
-    border: false, // Aseguramos que border está desactivado con ghost
   },
 };
 
-export const SuccessVariant: Story = {
+export const PrimaryColorTextarea: Story = {
   args: {
-    variant: "success",
-    border: true,
+    placeholder: "Bio",
+    color: "primary",
   },
 };
 
-export const ErrorVariant: Story = {
+export const SecondaryColorTextarea: Story = {
   args: {
-    variant: "error",
-    border: true,
+    placeholder: "Bio",
+    color: "secondary",
   },
 };
 
-export const WarningVariant: Story = {
+export const AccentColorTextarea: Story = {
   args: {
-    variant: "warning",
-    border: true,
+    placeholder: "Bio",
+    color: "accent",
+  },
+};
+
+export const InfoColorTextarea: Story = {
+  args: {
+    placeholder: "Bio",
+    color: "info",
+  },
+};
+
+export const SuccessColorTextarea: Story = {
+  args: {
+    placeholder: "Bio",
+    color: "success",
+  },
+};
+
+export const WarningColorTextarea: Story = {
+  args: {
+    placeholder: "Bio",
+    color: "warning",
+  },
+};
+
+export const ErrorColorTextarea: Story = {
+  args: {
+    placeholder: "Bio",
+    color: "error",
+  },
+};
+
+export const ExtraSmallTextarea: Story = {
+  args: {
+    placeholder: "Bio",
+    size: "xs",
+    bordered: true,
+  },
+};
+
+export const SmallTextarea: Story = {
+  args: {
+    placeholder: "Bio",
+    size: "sm",
+    bordered: true,
+  },
+};
+
+export const MediumTextarea: Story = {
+  args: {
+    placeholder: "Bio",
+    size: "md",
+    bordered: true,
+  },
+};
+
+export const LargeTextarea: Story = {
+  args: {
+    placeholder: "Bio",
+    size: "lg",
+    bordered: true,
+  },
+};
+
+export const DisabledTextarea: Story = {
+  args: {
+    placeholder: "Bio",
+    disabled: true,
   },
 };
