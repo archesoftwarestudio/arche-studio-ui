@@ -12,7 +12,7 @@ export interface SelectInputProps extends React.ComponentProps<"select"> {
     | "error";
   bordered?: boolean;
   ghost?: boolean;
-  size?: "xs" | "sm" | "md" | "lg";
+  inputSize?: "xs" | "sm" | "md" | "lg"; // Cambié de 'size' a 'inputSize'
   options: { value: string; label: string }[]; // Array de opciones
   containerWidth?: "w-full" | "w-1/2" | "w-1/3" | "w-1/4" | "w-auto"; // Ancho del contenedor
   disabled?: boolean;
@@ -23,7 +23,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({
   color,
   bordered = true,
   ghost = false,
-  size = "md",
+  inputSize = "md", // Cambié de 'size' a 'inputSize'
   options,
   containerWidth = "w-full", // Ancho por defecto
   disabled = false,
@@ -62,7 +62,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({
           bordered ? "select-bordered" : "",
           ghost ? "select-ghost" : "",
           color ? colorClasses[color] : "",
-          sizeClasses[size], // Aplicar tamaño
+          sizeClasses[inputSize], // Cambié de 'size' a 'inputSize'
           className,
         ]
           .filter(Boolean)

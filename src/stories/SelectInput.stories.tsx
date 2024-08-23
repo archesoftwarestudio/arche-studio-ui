@@ -23,7 +23,7 @@ export default {
         ],
       },
     },
-    size: {
+    inputSize: {
       control: {
         type: "select",
         options: ["xs", "sm", "md", "lg"],
@@ -40,8 +40,7 @@ export default {
     },
   },
   args: {
-    color: "primary",
-    size: "md",
+    inputSize: "md",
     bordered: true,
     ghost: false,
     disabled: false,
@@ -200,7 +199,7 @@ export const ErrorSelect: Story = {
 export const LargeSelect: Story = {
   args: {
     label: "Large",
-    size: "lg",
+    inputSize: "lg",
     bordered: true,
     options: [
       { value: "large-apple", label: "Large Apple" },
@@ -213,7 +212,7 @@ export const LargeSelect: Story = {
 export const SmallSelect: Story = {
   args: {
     label: "Small",
-    size: "sm",
+    inputSize: "sm",
     bordered: true,
     options: [
       { value: "small-apple", label: "Small Apple" },
@@ -226,7 +225,7 @@ export const SmallSelect: Story = {
 export const ExtraSmallSelect: Story = {
   args: {
     label: "Tiny",
-    size: "xs",
+    inputSize: "xs",
     bordered: true,
     options: [
       { value: "tiny-apple", label: "Tiny Apple" },
