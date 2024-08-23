@@ -5,7 +5,7 @@ export interface RangeInputProps extends React.ComponentProps<"input"> {
   max?: number; // Valor máximo del rango
   step?: number; // Incremento en los valores del rango
   value?: number; // Valor actual del rango
-  size?: "xs" | "sm" | "md" | "lg"; // Tamaño del rango
+  inputSize?: "xs" | "sm" | "md" | "lg"; // Tamaño del rango
   color?:
     | "primary"
     | "secondary"
@@ -25,7 +25,7 @@ export const RangeInput: React.FC<RangeInputProps> = ({
   max = 100,
   step = 1,
   value,
-  size = "md", // Tamaño por defecto
+  inputSize = "md", // Tamaño por defecto
   color = "primary", // Color por defecto
   customColor,
   showSteps = false, // Mostrar medidas
@@ -86,7 +86,7 @@ export const RangeInput: React.FC<RangeInputProps> = ({
         onChange={handleChange}
         className={[
           "range", // Clase base de range input
-          sizeClasses[size], // Aplicar tamaño
+          sizeClasses[inputSize], // Aplicar tamaño
           customColor ? `[--range-shdw:${customColor}]` : colorClasses[color], // Aplicar color o personalizado
           className,
         ]

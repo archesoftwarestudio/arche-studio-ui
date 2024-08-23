@@ -9,7 +9,7 @@ export default {
   },
   tags: ["autodocs"],
   argTypes: {
-    size: {
+    inputSize: {
       control: {
         type: "select",
         options: ["xs", "sm", "md", "lg"],
@@ -40,8 +40,7 @@ export default {
     },
   },
   args: {
-    size: "md",
-    color: "primary",
+    inputSize: "md",
     disabled: false,
     min: 0,
     max: 100,
@@ -116,21 +115,21 @@ export const ErrorRange: Story = {
 
 export const LargeRange: Story = {
   args: {
-    size: "lg",
+    inputSize: "lg",
     value: 70,
   },
 };
 
 export const SmallRange: Story = {
   args: {
-    size: "sm",
+    inputSize: "sm",
     value: 50,
   },
 };
 
 export const ExtraSmallRange: Story = {
   args: {
-    size: "xs",
+    inputSize: "xs",
     value: 40,
   },
 };
