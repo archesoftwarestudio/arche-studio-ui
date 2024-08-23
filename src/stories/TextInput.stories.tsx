@@ -20,10 +20,11 @@ export default {
           "success",
           "warning",
           "error",
+          null, // Opción para que no tenga color
         ],
       },
     },
-    size: {
+    inputSize: {
       control: {
         type: "select",
         options: ["xs", "sm", "md", "lg"],
@@ -44,8 +45,7 @@ export default {
   },
   args: {
     placeholder: "Type here",
-    color: "primary",
-    size: "md",
+    inputSize: "md", // Tamaño por defecto
     bordered: true,
     ghost: false,
     disabled: false,
@@ -160,21 +160,21 @@ export const ErrorInput: Story = {
 export const LargeInput: Story = {
   args: {
     placeholder: "Large input",
-    size: "lg",
+    inputSize: "lg",
   },
 };
 
 export const SmallInput: Story = {
   args: {
     placeholder: "Small input",
-    size: "sm",
+    inputSize: "sm",
   },
 };
 
 export const ExtraSmallInput: Story = {
   args: {
     placeholder: "Tiny input",
-    size: "xs",
+    inputSize: "xs",
   },
 };
 

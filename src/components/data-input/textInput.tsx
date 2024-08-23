@@ -13,7 +13,7 @@ export interface TextInputProps extends React.ComponentProps<"input"> {
     | "error"; // Colores de DaisyUI
   bordered?: boolean; // Añadir borde
   ghost?: boolean; // Añadir estilo ghost
-  size?: "xs" | "sm" | "md" | "lg"; // Tamaños responsivos
+  inputSize?: "xs" | "sm" | "md" | "lg"; // Tamaños responsivos, renombrado para evitar conflicto
   disabled?: boolean; // Deshabilitar el input
   icon?: React.ReactNode; // Icono dentro del input
   customLabel?: string | React.ReactNode; // Texto o elemento personalizado en el label
@@ -28,7 +28,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   color,
   bordered = true,
   ghost = false,
-  size = "md", // Tamaño por defecto
+  inputSize = "md", // Tamaño por defecto
   disabled = false,
   icon,
   customLabel,
@@ -74,7 +74,7 @@ export const TextInput: React.FC<TextInputProps> = ({
           bordered ? "input-bordered" : "",
           ghost ? "input-ghost" : "",
           color ? colorClasses[color] : "",
-          sizeClasses[size], // Aplicar tamaño
+          sizeClasses[inputSize], // Aplicar tamaño usando inputSize
           className,
         ]
           .filter(Boolean)

@@ -1,15 +1,15 @@
-import { RatingInput } from "./components/data-input";
+import { TextInput } from "./components/data-input";
 
 export default function App() {
   return (
     <main className="flex flex-col items-center justify-between">
-      <RatingInput
+      <TextInput
+        badgeText="Optional"
+        bordered
         color="primary"
-        half
-        max={5}
-        shape="star"
-        size="md"
-        value={2.5}
+        placeholder="Type here"
+        inputSize="md"
+        withBadge
       />
     </main>
   );
