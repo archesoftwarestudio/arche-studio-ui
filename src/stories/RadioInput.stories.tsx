@@ -9,7 +9,7 @@ export default {
   },
   tags: ["autodocs"],
   argTypes: {
-    size: {
+    inputSize: {
       control: {
         type: "select",
         options: ["xs", "sm", "md", "lg"],
@@ -34,8 +34,7 @@ export default {
     },
   },
   args: {
-    size: "md",
-    color: "primary",
+    inputSize: "md",
     disabled: false,
   },
   decorators: [
@@ -52,7 +51,7 @@ type Story = StoryObj<RadioInputProps>;
 export const DefaultRadio: Story = {
   args: {
     name: "radioGroup1",
-    checked: true,
+    checked: true, // Esto se aplicará directamente al componente sin problema
   },
 };
 
@@ -119,7 +118,7 @@ export const DisabledRadio: Story = {
 export const SmallRadio: Story = {
   args: {
     name: "radioGroup10",
-    size: "sm",
+    inputSize: "sm",
     color: "primary",
   },
 };
@@ -127,7 +126,7 @@ export const SmallRadio: Story = {
 export const LargeRadio: Story = {
   args: {
     name: "radioGroup11",
-    size: "lg",
+    inputSize: "lg",
     color: "success",
   },
 };
@@ -135,7 +134,7 @@ export const LargeRadio: Story = {
 export const ExtraSmallRadio: Story = {
   args: {
     name: "radioGroup12",
-    size: "xs",
+    inputSize: "xs",
     color: "accent",
   },
 };

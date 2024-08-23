@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 export interface RadioInputProps extends React.ComponentProps<"input"> {
   label?: string;
-  size?: "xs" | "sm" | "md" | "lg"; // Tamaños del radio
+  inputSize?: "xs" | "sm" | "md" | "lg"; // Tamaños del radio
   color?:
     | "primary"
     | "secondary"
@@ -20,25 +20,16 @@ export interface RadioInputProps extends React.ComponentProps<"input"> {
 
 export const RadioInput: React.FC<RadioInputProps> = ({
   label,
-  size = "md", // Tamaño por defecto
-  color = "primary",
+  inputSize = "md", // Tamaño por defecto
+  color, // Color opcional
   disabled = false,
   name,
-  checked,
+  checked = false,
   containerWidth = "w-auto", // Ancho del contenedor por defecto
   onChange,
   className,
   ...htmlProps
 }) => {
-  const [isChecked, setIsChecked] = useState(checked || false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(e.target.checked);
-    if (onChange) {
-      onChange(e);
-    }
-  };
-
   // Mapear las clases de tamaño
   const sizeClasses: Record<string, string> = {
     xs: "radio-xs",
@@ -70,14 +61,14 @@ export const RadioInput: React.FC<RadioInputProps> = ({
           className={[
             "radio", // Clase base del radio
             color ? colorClasses[color] : "",
-            sizeClasses[size], // Aplicar tamaño
+            sizeClasses[inputSize], // Aplicar tamaño
             className,
           ]
             .filter(Boolean)
             .join(" ")}
-          checked={isChecked}
+          checked={checked}
           disabled={disabled}
-          onChange={handleChange}
+          onChange={onChange}
           {...htmlProps}
         />
       </label>
