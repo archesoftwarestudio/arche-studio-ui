@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+  pages: write # Permisos para desplegar en GitHub Pages
+  id-token: write # Necesario para autenticación OIDC
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,8 +28,18 @@ jobs:
       - name: Build Storybook
         run: npm run build-storybook
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload Storybook artifacts
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
+          path: ./storybook-static
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write # Permisos para escribir en Pages
+      id-token: write # Para autenticación
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
