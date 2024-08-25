@@ -6,35 +6,34 @@ ArcheUI es una librería de componentes de interfaz de usuario diseñada para cr
 
 Para instalar ArcheUI en tu proyecto, simplemente ejecuta el siguiente comando:
 
-\`\`\`bash
+```
 npm install arche-ui-studio
-\`\`\`
+```
 
 Luego, importa los estilos globales en tu archivo principal de CSS o JavaScript:
 
-\`\`\`javascript
+```javascript
 import "arche-ui-studio/dist/index.css";
-\`\`\`
+```
 
 ## Uso
 
 Una vez instalado, puedes empezar a usar los componentes de ArcheUI en tu proyecto:
 
-\`\`\`javascript
-import { Button, Input } from 'arche-ui-studio';
+```javascript
+import { Button, Input } from "arche-ui-studio";
 
 function App() {
-return (
-
-<div>
-<Button label="Click me" />
-<Input placeholder="Enter text" />
-</div>
-);
+  return (
+    <div>
+      <Button label="Click me" />
+      <Input placeholder="Enter text" />
+    </div>
+  );
 }
 
 export default App;
-\`\`\`
+```
 
 ## Documentación
 
