@@ -21,13 +21,16 @@ import "arche-ui-studio/dist/index.css";
 Una vez instalado, puedes empezar a usar los componentes de ArcheUI en tu proyecto:
 
 ```javascript
-import { Button, Input } from "arche-ui-studio";
+import "arche-ui-studio/dist/index.css";
+import { Button, TextInput } from "arche-ui-studio";
 
 function App() {
   return (
     <div>
-      <Button label="Click me" />
-      <Input placeholder="Enter text" />
+      <TextInput bordered inputSize="md" placeholder="Type your name" />
+      <Button size="medium" variant="primary" onClick={() => alert("Sent!")}>
+        Send
+      </Button>
     </div>
   );
 }
