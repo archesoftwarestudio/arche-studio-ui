@@ -160,7 +160,7 @@ export const MenuWithTitle: Story = {
   },
 };
 
-export const Submenu: Story = {
+export const CollapsibleSubmenu: Story = {
   args: {
     items: [
       { label: "Item 1", href: "#" },
@@ -174,30 +174,6 @@ export const Submenu: Story = {
             submenu: [
               { label: "Subitem 1", href: "#" },
               { label: "Subitem 2", href: "#" },
-            ],
-          },
-        ],
-      },
-      { label: "Item 3", href: "#" },
-    ],
-    collapsible: true,
-  },
-};
-
-export const CollapsibleSubmenu: Story = {
-  args: {
-    items: [
-      { label: "Item 1", href: "#" },
-      {
-        label: "Parent",
-        submenu: [
-          { label: "Submenu 1", href: "#" },
-          { label: "Submenu 2", href: "#" },
-          {
-            label: "Parent",
-            submenu: [
-              { label: "Submenu 1", href: "#" },
-              { label: "Submenu 2", href: "#" },
             ],
           },
         ],
