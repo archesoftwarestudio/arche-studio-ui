@@ -1,89 +1,111 @@
 import React from "react";
 
-export interface MenuItemProps extends React.ComponentProps<"li"> {
+export interface MenuItem {
+  label: string;
+  href?: string;
+  icon?: React.ReactNode;
+  badge?: string | React.ReactNode;
+  tooltip?: string;
+  submenu?: MenuItem[];
   active?: boolean;
   disabled?: boolean;
-  focus?: boolean;
-  label: string;
-  icon?: React.ReactNode;
-  submenu?: React.ReactNode;
 }
 
-export const MenuItem: React.FC<MenuItemProps> = ({
-  active = false,
-  disabled = false,
-  focus = false,
-  label,
-  icon,
-  submenu,
-  className,
-  ...htmlProps
-}) => {
-  const finalClassName = [
-    active ? "active" : "",
-    disabled ? "disabled" : "",
-    focus ? "focus" : "",
-    submenu ? "menu-dropdown-toggle" : "",
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
-
-  return (
-    <li className={finalClassName} {...htmlProps}>
-      <a className="flex items-center">
-        {icon && <span className="mr-2">{icon}</span>}
-        {label}
-      </a>
-      {submenu && <ul className="menu-dropdown p-2 bg-base-100">{submenu}</ul>}
-    </li>
-  );
-};
-
 export interface MenuProps extends React.ComponentProps<"ul"> {
-  title?: string;
-  horizontal?: boolean;
-  size?: "xs" | "sm" | "md" | "lg";
-  bgColor?: "base-100" | "base-200" | "base-300" | "neutral";
-  rounded?:
-    | "rounded-none"
-    | "rounded-sm"
-    | "rounded-md"
-    | "rounded-lg"
-    | "rounded-box";
-  width?: "w-32" | "w-48" | "w-56" | "w-64";
-  items: MenuItemProps[];
+  items: MenuItem[];
+  title?: string; // Título del menú
+  layout?: "vertical" | "horizontal" | "mega"; // Disposición del menú
+  responsive?: boolean; // Si es responsive
+  size?: "menu-xs" | "menu-sm" | "menu-md" | "menu-lg"; // Tamaños del menú
+  collapsible?: boolean; // Si los submenús deben ser colapsables
+  showSubmenu?: boolean; // Si se muestran los submenús
+  containerWidth?: "w-24" | "w-48" | "w-56" | "w-64" | "w-full"; // Ancho opcional del menú
+  className?: string;
 }
 
 export const Menu: React.FC<MenuProps> = ({
-  title,
-  horizontal = false,
-  size = "md",
-  bgColor = "base-100",
-  rounded = "rounded-box",
-  width = "w-56",
   items,
+  title,
+  layout = "vertical",
+  responsive = false,
+  size = "menu-md",
+  collapsible = false,
+  showSubmenu = false,
+  containerWidth,
   className,
   ...htmlProps
 }) => {
+  const layoutClass =
+    layout === "mega"
+      ? "xl:menu-horizontal bg-base-200 rounded-box lg:min-w-max" // Clase especial para mega menú
+      : responsive
+        ? `menu-${layout === "horizontal" ? "vertical lg:menu-horizontal" : layout}`
+        : `menu-${layout}`;
+
   const finalClassName = [
     "menu",
-    horizontal ? "menu-horizontal" : "menu-vertical",
-    `menu-${size}`,
-    `bg-${bgColor}`,
-    rounded,
-    !horizontal && width ? width : "", // Aplicar width solo si no es horizontal
+    layoutClass,
+    size,
+    containerWidth,
+    "bg-base-200 rounded-box",
     className,
   ]
     .filter(Boolean)
     .join(" ");
+
+  // Función para renderizar los submenús de forma recursiva
+  const renderSubmenu = (submenu: MenuItem[]) => (
+    <ul>{submenu.map((subItem) => renderMenuItem(subItem))}</ul>
+  );
+
+  // Función para renderizar los elementos del menú
+  const renderMenuItem = (item: MenuItem) => {
+    const { label, href, icon, badge, tooltip, submenu, active, disabled } =
+      item;
+    const itemClassName = [active ? "active" : "", disabled ? "disabled" : ""]
+      .filter(Boolean)
+      .join(" ");
+
+    return (
+      <li key={label} className={itemClassName}>
+        {submenu ? (
+          layout === "mega" ? (
+            <>
+              <a>{label}</a>
+              <ul className="bg-base-200">
+                {submenu.map((subItem) => renderMenuItem(subItem))}
+              </ul>
+            </>
+          ) : collapsible ? (
+            <details open={showSubmenu}>
+              <summary>{label}</summary>
+              <ul>{submenu.map((subItem) => renderMenuItem(subItem))}</ul>
+            </details>
+          ) : (
+            <a>
+              {icon && icon}
+              {label}
+            </a>
+          )
+        ) : (
+          <a
+            href={href}
+            className={tooltip ? `tooltip tooltip-right` : ""}
+            data-tip={tooltip}
+          >
+            {icon && icon}
+            {!tooltip && label}
+            {badge && <span className="badge badge-sm ml-2">{badge}</span>}
+          </a>
+        )}
+      </li>
+    );
+  };
 
   return (
     <ul className={finalClassName} {...htmlProps}>
       {title && <li className="menu-title">{title}</li>}
-      {items.map((item, index) => (
-        <MenuItem key={index} {...item} />
-      ))}
+      {items.map((item) => renderMenuItem(item))}
     </ul>
   );
 };
