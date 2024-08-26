@@ -7,6 +7,7 @@ export default {
     extend: {},
   },
   plugins: [daisyui],
+  prefix: "arche-studio",
   daisyui: {
     themes: [
       {
