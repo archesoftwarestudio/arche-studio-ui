@@ -1,9 +1,14 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
+import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 
 export default defineConfig({
-  plugins: [react(), dts({ include: ["src/components", "src/index.ts"] })],
+  plugins: [
+    react(),
+    dts({ include: ["src/components", "src/index.ts"] }),
+    cssInjectedByJsPlugin(),
+  ],
   build: {
     lib: {
       entry: "src/index.ts", // Asegúrate de que este archivo exporte todos tus componentes
