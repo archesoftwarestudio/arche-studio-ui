@@ -53,11 +53,6 @@ export const Menu: React.FC<MenuProps> = ({
     .filter(Boolean)
     .join(" ");
 
-  // Función para renderizar los submenús de forma recursiva
-  const renderSubmenu = (submenu: MenuItem[]) => (
-    <ul>{submenu.map((subItem) => renderMenuItem(subItem))}</ul>
-  );
-
   // Función para renderizar los elementos del menú
   const renderMenuItem = (item: MenuItem) => {
     const { label, href, icon, badge, tooltip, submenu, active, disabled } =
