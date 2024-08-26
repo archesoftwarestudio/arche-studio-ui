@@ -165,21 +165,22 @@ export const Submenu: Story = {
     items: [
       { label: "Item 1", href: "#" },
       {
-        label: "Parent",
+        label: "Item 2",
         submenu: [
-          { label: "Submenu 1", href: "#" },
-          { label: "Submenu 2", href: "#" },
+          { label: "Subitem 1", href: "#" },
+          { label: "Subitem 2", href: "#" },
           {
-            label: "Parent",
+            label: "Submenu 1",
             submenu: [
-              { label: "Submenu 1", href: "#" },
-              { label: "Submenu 2", href: "#" },
+              { label: "Subitem 1", href: "#" },
+              { label: "Subitem 2", href: "#" },
             ],
           },
         ],
       },
       { label: "Item 3", href: "#" },
     ],
+    collapsible: true,
   },
 };
 
