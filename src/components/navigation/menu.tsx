@@ -5,6 +5,17 @@ export interface MenuItem {
   href?: string;
   icon?: React.ReactNode;
   badge?: string | React.ReactNode;
+  badgeType?:
+    | "default"
+    | "neutral"
+    | "primary"
+    | "secondary"
+    | "accent"
+    | "ghost"
+    | "info"
+    | "success"
+    | "warning"
+    | "error";
   tooltip?: string;
   submenu?: MenuItem[];
   active?: boolean;
@@ -55,8 +66,23 @@ export const Menu: React.FC<MenuProps> = ({
 
   // Función para renderizar los elementos del menú
   const renderMenuItem = (item: MenuItem) => {
-    const { label, href, icon, badge, tooltip, submenu, active, disabled } =
-      item;
+    const {
+      label,
+      href,
+      icon,
+      badge,
+      badgeType = "default", // Valor por defecto de badgeType
+      tooltip,
+      submenu,
+      active,
+      disabled,
+    } = item;
+
+    // Clase del badge basada en el tipo seleccionado
+    const badgeClass = badge
+      ? `badge badge-${badgeType === "default" ? "" : badgeType}`
+      : "";
+
     const itemClassName = [active ? "active" : "", disabled ? "disabled" : ""]
       .filter(Boolean)
       .join(" ");
@@ -90,7 +116,7 @@ export const Menu: React.FC<MenuProps> = ({
           >
             {icon && icon}
             {!tooltip && label}
-            {badge && <span className="badge badge-sm ml-2">{badge}</span>}
+            {badge && <span className={`${badgeClass} ml-2`}>{badge}</span>}
           </a>
         )}
       </li>

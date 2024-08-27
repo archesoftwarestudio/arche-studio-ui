@@ -31,7 +31,7 @@ export const ResponsiveMenu: Story = {
       { label: "Item 3", href: "#" },
     ],
     responsive: true,
-    layout: "vertical",
+    layout: "horizontal",
   },
 };
 
@@ -112,18 +112,28 @@ export const MenuWithIconsAndBadges: Story = {
         label: "Inbox",
         icon: <MdMail />,
         badge: "99+",
+        badgeType: "info", // Info badge con ícono
         href: "#",
       },
       {
         label: "Updates",
         icon: <MdUpdate />,
         badge: "NEW",
+        badgeType: "success", // Success badge con ícono
         href: "#",
       },
       {
         label: "Stats",
         icon: <MdBarChart />,
         badge: "!",
+        badgeType: "warning", // Warning badge con ícono
+        href: "#",
+      },
+      {
+        label: "Errors",
+        icon: <MdBarChart />,
+        badge: "ERR",
+        badgeType: "error", // Error badge con ícono
         href: "#",
       },
     ],
@@ -157,6 +167,30 @@ export const MenuWithTitle: Story = {
       { label: "Item 2", href: "#" },
       { label: "Item 3", href: "#" },
     ],
+  },
+};
+
+export const Submenu: Story = {
+  args: {
+    items: [
+      { label: "Item 1", href: "#" },
+      {
+        label: "Item 2",
+        submenu: [
+          { label: "Subitem 1", href: "#" },
+          { label: "Subitem 2", href: "#" },
+          {
+            label: "Submenu 1",
+            submenu: [
+              { label: "Subitem 1", href: "#" },
+              { label: "Subitem 2", href: "#" },
+            ],
+          },
+        ],
+      },
+      { label: "Item 3", href: "#" },
+    ],
+    showSubmenu: true,
   },
 };
 
@@ -209,7 +243,7 @@ export const HorizontalSubmenu: Story = {
       { label: "Item 3", href: "#" },
     ],
     layout: "horizontal",
-    collapsible: true,
+    showSubmenu: true,
   },
 };
 
