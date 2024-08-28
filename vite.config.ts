@@ -3,7 +3,10 @@ import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 
 export default defineConfig({
-  plugins: [react(), dts({ include: ["src/components", "src/index.ts"] })],
+  plugins: [
+    react(),
+    dts({ include: ["src/components", "src/index.ts", "themes.ts"] }),
+  ],
   build: {
     lib: {
       entry: "src/index.ts", // Asegúrate de que este archivo exporte todos tus componentes
