@@ -1,6 +1,6 @@
 import React from "react";
 
-export interface MenuItem {
+export interface MenuItem extends React.ComponentProps<"li"> {
   label: string;
   href?: string;
   icon?: React.ReactNode;
