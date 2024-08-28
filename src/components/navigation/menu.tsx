@@ -15,10 +15,10 @@ export interface MenuItem extends React.ComponentProps<"li"> {
     | "info"
     | "success"
     | "warning"
-    | "error";
+    | "error"; // Añadir más opciones para el tipo de badge
   tooltip?: string;
   submenu?: MenuItem[];
-  active?: boolean;
+  active?: boolean; // Para marcar el item como activo
   disabled?: boolean;
 }
 
@@ -48,7 +48,7 @@ export const Menu: React.FC<MenuProps> = ({
 }) => {
   const layoutClass =
     layout === "mega"
-      ? "xl:menu-horizontal bg-base-200 rounded-box lg:min-w-max" // Clase especial para mega menú
+      ? "xl:menu-horizontal bg-base-200 rounded-box lg:min-w-max"
       : responsive
         ? `menu-${layout === "horizontal" ? "vertical lg:menu-horizontal" : layout}`
         : `menu-${layout}`;
@@ -74,16 +74,20 @@ export const Menu: React.FC<MenuProps> = ({
       badgeType = "default", // Valor por defecto de badgeType
       tooltip,
       submenu,
-      active,
+      active, // Estado activo
       disabled,
     } = item;
 
-    // Clase del badge basada en el tipo seleccionado
     const badgeClass = badge
       ? `badge badge-${badgeType === "default" ? "" : badgeType}`
       : "";
-
-    const itemClassName = [active ? "active" : "", disabled ? "disabled" : ""]
+    const itemClassName = [disabled ? "disabled" : ""]
+      .filter(Boolean)
+      .join(" ");
+    const linkClassName = [
+      active ? "active" : "",
+      tooltip ? "tooltip tooltip-right" : "",
+    ]
       .filter(Boolean)
       .join(" ");
 
@@ -92,7 +96,7 @@ export const Menu: React.FC<MenuProps> = ({
         {submenu ? (
           layout === "mega" ? (
             <>
-              <a>{label}</a>
+              <a className={linkClassName}>{label}</a>
               <ul className="bg-base-200">
                 {submenu.map((subItem) => renderMenuItem(subItem))}
               </ul>
@@ -103,20 +107,18 @@ export const Menu: React.FC<MenuProps> = ({
               <ul>{submenu.map((subItem) => renderMenuItem(subItem))}</ul>
             </details>
           ) : (
-            <a>
+            <a className={linkClassName}>
               {icon && icon}
               {label}
             </a>
           )
         ) : (
-          <a
-            href={href}
-            className={tooltip ? `tooltip tooltip-right` : ""}
-            data-tip={tooltip}
-          >
+          <a href={href} className={linkClassName} data-tip={tooltip}>
             {icon && icon}
             {!tooltip && label}
-            {badge && <span className={`${badgeClass} ml-2`}>{badge}</span>}
+            {badge && (
+              <span className={`${badgeClass} gap-2 ml-2`}>{badge}</span>
+            )}
           </a>
         )}
       </li>

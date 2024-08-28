@@ -218,6 +218,16 @@ export const CollapsibleSubmenu: Story = {
   },
 };
 
+export const MenuWithActiveItem: Story = {
+  args: {
+    items: [
+      { label: "Item 1", href: "#", active: false },
+      { label: "Item 2", href: "#", active: true }, // Item activo
+      { label: "Item 3", href: "#", active: false },
+    ],
+  },
+};
+
 export const HorizontalMenu: Story = {
   args: {
     items: [
