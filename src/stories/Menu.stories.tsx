@@ -15,21 +15,13 @@ type Story = StoryObj<MenuProps>;
 
 export const DefaultMenu: Story = {
   args: {
-    items: [
-      { label: "Item 1", href: "#" },
-      { label: "Item 2", href: "#" },
-      { label: "Item 3", href: "#" },
-    ],
+    items: [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }],
   },
 };
 
 export const ResponsiveMenu: Story = {
   args: {
-    items: [
-      { label: "Item 1", href: "#" },
-      { label: "Item 2", href: "#" },
-      { label: "Item 3", href: "#" },
-    ],
+    items: [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }],
     responsive: true,
     layout: "horizontal",
   },
@@ -41,17 +33,14 @@ export const MenuWithIcons: Story = {
       {
         label: "Home",
         icon: <MdHome />,
-        href: "#",
       },
       {
         label: "Details",
         icon: <MdInfo />,
-        href: "#",
       },
       {
         label: "Stats",
         icon: <MdBarChart />,
-        href: "#",
       },
     ],
   },
@@ -63,17 +52,14 @@ export const MenuWithIconsHorizontal: Story = {
       {
         label: "Home",
         icon: <MdHome />,
-        href: "#",
       },
       {
         label: "Details",
         icon: <MdInfo />,
-        href: "#",
       },
       {
         label: "Stats",
         icon: <MdBarChart />,
-        href: "#",
       },
     ],
     layout: "horizontal",
@@ -86,19 +72,16 @@ export const MenuWithTooltips: Story = {
       {
         label: "Home",
         icon: <MdHome />,
-        href: "#",
         tooltip: "Home",
       },
       {
         label: "Details",
         icon: <MdInfo />,
-        href: "#",
         tooltip: "Details",
       },
       {
         label: "Stats",
         icon: <MdBarChart />,
-        href: "#",
         tooltip: "Stats",
       },
     ],
@@ -113,28 +96,24 @@ export const MenuWithIconsAndBadges: Story = {
         icon: <MdMail />,
         badge: "99+",
         badgeType: "info", // Info badge con ícono
-        href: "#",
       },
       {
         label: "Updates",
         icon: <MdUpdate />,
         badge: "NEW",
         badgeType: "success", // Success badge con ícono
-        href: "#",
       },
       {
         label: "Stats",
         icon: <MdBarChart />,
         badge: "!",
         badgeType: "warning", // Warning badge con ícono
-        href: "#",
       },
       {
         label: "Errors",
         icon: <MdBarChart />,
         badge: "ERR",
         badgeType: "error", // Error badge con ícono
-        href: "#",
       },
     ],
   },
@@ -142,10 +121,7 @@ export const MenuWithIconsAndBadges: Story = {
 
 export const MenuSizes: Story = {
   args: {
-    items: [
-      { label: "xs item 1", href: "#" },
-      { label: "xs item 2", href: "#" },
-    ],
+    items: [{ label: "xs item 1" }, { label: "xs item 2" }],
     size: "menu-xs",
   },
 };
@@ -153,8 +129,8 @@ export const MenuSizes: Story = {
 export const MenuWithDisabledItems: Story = {
   args: {
     items: [
-      { label: "Enabled item", href: "#" },
-      { label: "Disabled item", href: "#", disabled: true },
+      { label: "Enabled item" },
+      { label: "Disabled item", disabled: true },
     ],
   },
 };
@@ -162,33 +138,26 @@ export const MenuWithDisabledItems: Story = {
 export const MenuWithTitle: Story = {
   args: {
     title: "Title",
-    items: [
-      { label: "Item 1", href: "#" },
-      { label: "Item 2", href: "#" },
-      { label: "Item 3", href: "#" },
-    ],
+    items: [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }],
   },
 };
 
 export const Submenu: Story = {
   args: {
     items: [
-      { label: "Item 1", href: "#" },
+      { label: "Item 1" },
       {
         label: "Item 2",
         submenu: [
-          { label: "Subitem 1", href: "#" },
-          { label: "Subitem 2", href: "#" },
+          { label: "Subitem 1" },
+          { label: "Subitem 2" },
           {
             label: "Submenu 1",
-            submenu: [
-              { label: "Subitem 1", href: "#" },
-              { label: "Subitem 2", href: "#" },
-            ],
+            submenu: [{ label: "Subitem 1" }, { label: "Subitem 2" }],
           },
         ],
       },
-      { label: "Item 3", href: "#" },
+      { label: "Item 3" },
     ],
     showSubmenu: true,
   },
@@ -197,22 +166,19 @@ export const Submenu: Story = {
 export const CollapsibleSubmenu: Story = {
   args: {
     items: [
-      { label: "Item 1", href: "#" },
+      { label: "Item 1" },
       {
         label: "Item 2",
         submenu: [
-          { label: "Subitem 1", href: "#" },
-          { label: "Subitem 2", href: "#" },
+          { label: "Subitem 1" },
+          { label: "Subitem 2" },
           {
             label: "Submenu 1",
-            submenu: [
-              { label: "Subitem 1", href: "#" },
-              { label: "Subitem 2", href: "#" },
-            ],
+            submenu: [{ label: "Subitem 1" }, { label: "Subitem 2" }],
           },
         ],
       },
-      { label: "Item 3", href: "#" },
+      { label: "Item 3" },
     ],
     collapsible: true,
   },
@@ -221,20 +187,16 @@ export const CollapsibleSubmenu: Story = {
 export const MenuWithActiveItem: Story = {
   args: {
     items: [
-      { label: "Item 1", href: "#", active: false },
-      { label: "Item 2", href: "#", active: true }, // Item activo
-      { label: "Item 3", href: "#", active: false },
+      { label: "Item 1", active: false },
+      { label: "Item 2", active: true }, // Item activo
+      { label: "Item 3", active: false },
     ],
   },
 };
 
 export const HorizontalMenu: Story = {
   args: {
-    items: [
-      { label: "Item 1", href: "#" },
-      { label: "Item 2", href: "#" },
-      { label: "Item 3", href: "#" },
-    ],
+    items: [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }],
     layout: "horizontal",
   },
 };
@@ -242,15 +204,12 @@ export const HorizontalMenu: Story = {
 export const HorizontalSubmenu: Story = {
   args: {
     items: [
-      { label: "Item 1", href: "#" },
+      { label: "Item 1" },
       {
         label: "Parent",
-        submenu: [
-          { label: "Submenu 1", href: "#" },
-          { label: "Submenu 2", href: "#" },
-        ],
+        submenu: [{ label: "Submenu 1" }, { label: "Submenu 2" }],
       },
-      { label: "Item 3", href: "#" },
+      { label: "Item 3" },
     ],
     layout: "horizontal",
     showSubmenu: true,
@@ -263,33 +222,33 @@ export const MegaMenu: Story = {
       {
         label: "Solutions",
         submenu: [
-          { label: "Design", href: "#" },
-          { label: "Development", href: "#" },
-          { label: "Hosting", href: "#" },
-          { label: "Domain register", href: "#" },
+          { label: "Design" },
+          { label: "Development" },
+          { label: "Hosting" },
+          { label: "Domain register" },
         ],
       },
       {
         label: "Enterprise",
         submenu: [
-          { label: "CRM software", href: "#" },
-          { label: "Marketing management", href: "#" },
-          { label: "Security", href: "#" },
-          { label: "Consulting", href: "#" },
+          { label: "CRM software" },
+          { label: "Marketing management" },
+          { label: "Security" },
+          { label: "Consulting" },
         ],
       },
       {
         label: "Products",
         submenu: [
-          { label: "UI Kit", href: "#" },
-          { label: "Wordpress themes", href: "#" },
-          { label: "Wordpress plugins", href: "#" },
+          { label: "UI Kit" },
+          { label: "Wordpress themes" },
+          { label: "Wordpress plugins" },
           {
             label: "Open source",
             submenu: [
-              { label: "Auth management system", href: "#" },
-              { label: "VScode theme", href: "#" },
-              { label: "Color picker app", href: "#" },
+              { label: "Auth management system" },
+              { label: "VScode theme" },
+              { label: "Color picker app" },
             ],
           },
         ],
@@ -297,10 +256,10 @@ export const MegaMenu: Story = {
       {
         label: "Company",
         submenu: [
-          { label: "About us", href: "#" },
-          { label: "Contact us", href: "#" },
-          { label: "Privacy policy", href: "#" },
-          { label: "Press kit", href: "#" },
+          { label: "About us" },
+          { label: "Contact us" },
+          { label: "Privacy policy" },
+          { label: "Press kit" },
         ],
       },
     ],

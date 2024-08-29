@@ -2,7 +2,6 @@ import React from "react";
 
 export interface MenuItem extends React.ComponentProps<"li"> {
   label: string;
-  href?: string;
   icon?: React.ReactNode;
   badge?: string | React.ReactNode;
   badgeType?:
@@ -68,7 +67,6 @@ export const Menu: React.FC<MenuProps> = ({
   const renderMenuItem = (item: MenuItem) => {
     const {
       label,
-      href,
       icon,
       badge,
       badgeType = "default", // Valor por defecto de badgeType
@@ -76,6 +74,7 @@ export const Menu: React.FC<MenuProps> = ({
       submenu,
       active, // Estado activo
       disabled,
+      ...liProps // Captura todos los demás props que se puedan pasar a li
     } = item;
 
     const badgeClass = badge
@@ -92,7 +91,7 @@ export const Menu: React.FC<MenuProps> = ({
       .join(" ");
 
     return (
-      <li key={label} className={itemClassName}>
+      <li key={label} className={itemClassName} {...liProps}>
         {submenu ? (
           layout === "mega" ? (
             <>
@@ -113,7 +112,11 @@ export const Menu: React.FC<MenuProps> = ({
             </a>
           )
         ) : (
-          <a href={href} className={linkClassName} data-tip={tooltip}>
+          <a
+            className={linkClassName}
+            data-tip={tooltip}
+            onClick={() => liProps.onClick}
+          >
             {icon && icon}
             {!tooltip && label}
             {badge && (
