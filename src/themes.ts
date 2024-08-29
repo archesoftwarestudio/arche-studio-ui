@@ -4,6 +4,10 @@ export interface ThemeProps {
   accent: string;
   neutral: string;
   "base-100": string;
+  info: string;
+  success: string;
+  warning: string;
+  error: string;
   "--rounded-box": string;
   "--rounded-btn": string;
   "--rounded-badge": string;
@@ -26,6 +30,10 @@ export const Themes: ThemesProps = {
     accent: "rgb(255, 225, 217)",
     neutral: "#63d7b1",
     "base-100": "#fcfcfa",
+    info: "#00b5ff",
+    success: "#00a96e",
+    warning: "#ffbe00",
+    error: "#ff5861",
     "--rounded-box": "1rem", // border radius rounded-box utility class, used in card and other large boxes
     "--rounded-btn": "0.5rem", // border radius rounded-btn utility class, used in buttons and similar element
     "--rounded-badge": "1.9rem", // border radius rounded-badge utility class, used in badges and similar
