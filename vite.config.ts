@@ -5,7 +5,7 @@ import dts from "vite-plugin-dts";
 export default defineConfig({
   plugins: [
     react(),
-    dts({ include: ["src/components", "src/index.ts", "themes.ts"] }),
+    dts({ include: ["src/components", "src/themes.ts", "src/index.ts"] }),
   ],
   build: {
     lib: {

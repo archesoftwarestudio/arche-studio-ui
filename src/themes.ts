@@ -1,4 +1,25 @@
-export const Themes = {
+export interface ThemeProps {
+  primary: string;
+  secondary: string;
+  accent: string;
+  neutral: string;
+  "base-100": string;
+  "--rounded-box": string;
+  "--rounded-btn": string;
+  "--rounded-badge": string;
+  "--animation-btn": string;
+  "--animation-input": string;
+  "--btn-focus-scale": string;
+  "--border-btn": string;
+  "--tab-border": string;
+  "--tab-radius": string;
+}
+
+export interface ThemesProps {
+  light: ThemeProps;
+}
+
+export const Themes: ThemesProps = {
   light: {
     primary: "#02875f",
     secondary: "#036046",

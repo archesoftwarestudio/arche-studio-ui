@@ -3,3 +3,4 @@ export * from "./components/data-display";
 export * from "./components/data-input";
 export * from "./components/feedback";
 export * from "./components/navigation";
+export * from "./themes";
