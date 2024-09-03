@@ -43,10 +43,10 @@ export const Themes: ThemesProps = {
     accent: "#fff0e6", // soft-crayola
     "accent-content": "#ef7b45", // crayola o contenido legible
     neutral: "#364853", // charcoal
-    "neutral-content": "#b1b3bb", // frenchgray
+    "neutral-content": "#f0f0f0", // ex-frenchgray
     "base-100": "#f6f7f8", // seasalt
-    "base-200": "#d4d5da", // platinum
-    "base-300": "#e5e6e9", // platinumshiny
+    "base-200": "#e5e6e9", // platinumshiny
+    "base-300": "#d4d5da", // platinum
     "base-content": "#002129", // gunmetal
     info: "#b1b3bb", // frenchgray
     "info-content": "#ffffff", // contenido legible
