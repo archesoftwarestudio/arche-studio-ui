@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Tabs, TabsProps } from "../components/navigation"; // Ajusta la ruta según tu estructura de archivos
+import { Tabs, TabsProps } from "../components/navigation";
 
 export default {
   title: "Navigation/Tabs",

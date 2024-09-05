@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-// Extensión de React.CSSProperties para soportar propiedades personalizadas como --tab-bg
-interface CustomCSSProperties extends React.CSSProperties {
-  [key: `--${string}`]: string | number;
+interface TabCustomStyles extends React.CSSProperties {
+  "--tab-bg"?: string;
+  "--tab-border-color"?: string;
+  "--tab-text-color"?: string;
 }
 
 interface TabItem {
-  label: string;
+  label: React.ReactNode;
   content: React.ReactNode;
   disabled?: boolean;
-  customStyles?: CustomCSSProperties; // Ahora acepta propiedades CSS personalizadas
+  customStyles?: TabCustomStyles;
 }
 
 type Variant = "boxed" | "bordered" | "lifted";
@@ -97,7 +98,7 @@ export const Tabs: React.FC<TabsProps> = ({
                   name={name}
                   role="tab"
                   className={tabClasses}
-                  aria-label={item.label}
+                  aria-label={item.label as string}
                   checked={isActive}
                   onChange={() => handleTabChange(index)}
                   disabled={item.disabled}
@@ -114,7 +115,7 @@ export const Tabs: React.FC<TabsProps> = ({
             );
           } else {
             return (
-              <a
+              <button
                 key={index}
                 role="tab"
                 className={tabClasses}
@@ -124,7 +125,7 @@ export const Tabs: React.FC<TabsProps> = ({
                 style={item.customStyles}
               >
                 {item.label}
-              </a>
+              </button>
             );
           }
         })}
