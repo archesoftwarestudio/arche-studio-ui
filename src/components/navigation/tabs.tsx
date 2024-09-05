@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 
+// Extensión de React.CSSProperties para soportar propiedades personalizadas como --tab-bg
+interface CustomCSSProperties extends React.CSSProperties {
+  [key: `--${string}`]: string | number;
+}
+
 interface TabItem {
   label: string;
   content: React.ReactNode;
   disabled?: boolean;
-  customStyles?: React.CSSProperties;
+  customStyles?: CustomCSSProperties; // Ahora acepta propiedades CSS personalizadas
 }
 
 type Variant = "boxed" | "bordered" | "lifted";
