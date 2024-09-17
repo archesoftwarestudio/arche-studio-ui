@@ -7,6 +7,7 @@ export default {
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
   argTypes: {},
   args: {
     isOpen: true,
