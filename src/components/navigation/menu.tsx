@@ -1,6 +1,6 @@
 import React from "react";
 
-export interface MenuItem extends React.ComponentProps<"li"> {
+export interface MenuItem {
   label: string;
   icon?: React.ReactNode;
   badge?: string | React.ReactNode;
@@ -14,11 +14,13 @@ export interface MenuItem extends React.ComponentProps<"li"> {
     | "info"
     | "success"
     | "warning"
-    | "error"; // Añadir más opciones para el tipo de badge
+    | "error";
   tooltip?: string;
   submenu?: MenuItem[];
-  active?: boolean; // Para marcar el item como activo
+  active?: boolean;
   disabled?: boolean;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>; // Manejador de eventos para <a>
+  liProps?: React.LiHTMLAttributes<HTMLLIElement>; // Props adicionales para <li>
 }
 
 export interface MenuProps extends React.ComponentProps<"ul"> {
@@ -69,12 +71,13 @@ export const Menu: React.FC<MenuProps> = ({
       label,
       icon,
       badge,
-      badgeType = "default", // Valor por defecto de badgeType
+      badgeType = "default",
       tooltip,
       submenu,
-      active, // Estado activo
+      active,
       disabled,
-      ...liProps // Captura todos los demás props que se puedan pasar a li
+      onClick, // Manejador de eventos para <a>
+      liProps = {}, // Props adicionales para <li>
     } = item;
 
     const badgeClass = badge
@@ -95,7 +98,10 @@ export const Menu: React.FC<MenuProps> = ({
         {submenu ? (
           layout === "mega" ? (
             <>
-              <a className={linkClassName}>{label}</a>
+              <a className={linkClassName} onClick={onClick}>
+                {icon && icon}
+                {label}
+              </a>
               <ul className="bg-base-200">
                 {submenu.map((subItem) => renderMenuItem(subItem))}
               </ul>
@@ -106,17 +112,16 @@ export const Menu: React.FC<MenuProps> = ({
               <ul>{submenu.map((subItem) => renderMenuItem(subItem))}</ul>
             </details>
           ) : (
-            <a className={linkClassName}>
-              {icon && icon}
-              {label}
-            </a>
+            <>
+              <a className={linkClassName} onClick={onClick}>
+                {icon && icon}
+                {label}
+              </a>
+              <ul>{submenu.map((subItem) => renderMenuItem(subItem))}</ul>
+            </>
           )
         ) : (
-          <a
-            className={linkClassName}
-            data-tip={tooltip}
-            onClick={() => liProps.onClick}
-          >
+          <a className={linkClassName} data-tip={tooltip} onClick={onClick}>
             {icon && icon}
             {!tooltip && label}
             {badge && (
