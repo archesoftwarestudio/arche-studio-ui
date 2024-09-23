@@ -60,6 +60,7 @@ export const TextInput: React.FC<TextInputProps> = ({
     lg: "input-lg",
   };
 
+  const isPasswordInput = type === "password";
   // Añadir clase `items-center` para alinear el contenido verticalmente
   return (
     <div className={`form-control ${containerWidth}`}>
@@ -86,14 +87,14 @@ export const TextInput: React.FC<TextInputProps> = ({
         {icon && <span className="icon">{icon}</span>}
         {customLabel && <span className="custom-label">{customLabel}</span>}
         <input
-          type="text"
+          type={isPasswordInput && showPassword ? "text" : type}
           placeholder={placeholder}
           disabled={disabled}
           className="grow h-full" // El input toma el ancho restante y asegura la altura completa
           {...htmlProps}
         />
         {withBadge && <span className="badge badge-info">{badgeText}</span>}
-        {type === "password" && (
+        {isPasswordInput && (
           <button
             type="button"
             onClick={() => setShowPassword(!setShowPassword)}
