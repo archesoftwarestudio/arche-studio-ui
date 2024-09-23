@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 export interface TextInputProps extends React.ComponentProps<"input"> {
   label?: string; // Texto para el label
@@ -36,8 +37,10 @@ export const TextInput: React.FC<TextInputProps> = ({
   badgeText = "",
   containerWidth = "w-full",
   className,
+  type = "text",
   ...htmlProps
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
   // Mapear las clases de color explícitas
   const colorClasses: Record<string, string> = {
     primary: "input-primary",
@@ -90,6 +93,15 @@ export const TextInput: React.FC<TextInputProps> = ({
           {...htmlProps}
         />
         {withBadge && <span className="badge badge-info">{badgeText}</span>}
+        {type === "password" && (
+          <button
+            type="button"
+            onClick={() => setShowPassword(!setShowPassword)}
+            className="btn btn-ghost"
+          >
+            {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
+          </button>
+        )}
       </label>
     </div>
   );
