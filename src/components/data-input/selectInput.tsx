@@ -1,7 +1,15 @@
 import React from "react";
 
+export interface SelectOption {
+  value: string;
+  label: string;
+  selected?: boolean; // Añadido para permitir selección predeterminada
+  disabled?: boolean; // Añadido para deshabilitar opciones específicas
+}
+
 export interface SelectInputProps extends React.ComponentProps<"select"> {
   label?: string;
+  labelTextAlt?: string; // Etiqueta alternativa para los casos de uso con label
   color?:
     | "primary"
     | "secondary"
@@ -12,25 +20,25 @@ export interface SelectInputProps extends React.ComponentProps<"select"> {
     | "error";
   bordered?: boolean;
   ghost?: boolean;
-  inputSize?: "xs" | "sm" | "md" | "lg"; // Cambié de 'size' a 'inputSize'
-  options: { value: string; label: string }[]; // Array de opciones
-  containerWidth?: "w-full" | "w-1/2" | "w-1/3" | "w-1/4" | "w-auto"; // Ancho del contenedor
+  inputSize?: "xs" | "sm" | "md" | "lg";
+  options: SelectOption[];
+  containerWidth?: "w-full" | "w-1/2" | "w-1/3" | "w-1/4" | "w-auto";
   disabled?: boolean;
 }
 
 export const SelectInput: React.FC<SelectInputProps> = ({
   label,
+  labelTextAlt,
   color,
-  bordered = true,
+  bordered = false,
   ghost = false,
-  inputSize = "md", // Cambié de 'size' a 'inputSize'
+  inputSize = "md",
   options,
-  containerWidth = "w-full", // Ancho por defecto
+  containerWidth = "w-full",
   disabled = false,
   className,
   ...htmlProps
 }) => {
-  // Mapear las clases de colores
   const colorClasses: Record<string, string> = {
     primary: "select-primary",
     secondary: "select-secondary",
@@ -41,28 +49,30 @@ export const SelectInput: React.FC<SelectInputProps> = ({
     error: "select-error",
   };
 
-  // Mapear las clases de tamaño
   const sizeClasses: Record<string, string> = {
     xs: "select-xs",
     sm: "select-sm",
-    md: "select-md", // Tamaño por defecto
+    md: "select-md",
     lg: "select-lg",
   };
 
   return (
-    <div className={`form-control ${containerWidth}`}>
+    <label className={`form-control ${containerWidth}`}>
       {label && (
-        <label className="label">
+        <div className="label">
           <span className="label-text">{label}</span>
-        </label>
+          {labelTextAlt && (
+            <span className="label-text-alt">{labelTextAlt}</span>
+          )}
+        </div>
       )}
       <select
         className={[
-          "select", // Clase base del select
+          "select",
           bordered ? "select-bordered" : "",
           ghost ? "select-ghost" : "",
           color ? colorClasses[color] : "",
-          sizeClasses[inputSize], // Cambié de 'size' a 'inputSize'
+          sizeClasses[inputSize],
           className,
         ]
           .filter(Boolean)
@@ -71,11 +81,22 @@ export const SelectInput: React.FC<SelectInputProps> = ({
         {...htmlProps}
       >
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option
+            key={option.value}
+            value={option.value}
+            disabled={option.disabled}
+            selected={option.selected}
+          >
             {option.label}
           </option>
         ))}
       </select>
-    </div>
+      {labelTextAlt && (
+        <div className="label">
+          <span className="label-text-alt">{labelTextAlt}</span>
+          <span className="label-text-alt">{labelTextAlt}</span>
+        </div>
+      )}
+    </label>
   );
 };
