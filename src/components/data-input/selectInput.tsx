@@ -24,6 +24,7 @@ export interface SelectInputProps extends React.ComponentProps<"select"> {
   options: SelectOption[];
   containerWidth?: "w-full" | "w-1/2" | "w-1/3" | "w-1/4" | "w-auto";
   disabled?: boolean;
+  placeholder?: string;
 }
 
 export const SelectInput: React.FC<SelectInputProps> = ({
@@ -37,6 +38,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({
   containerWidth = "w-full",
   disabled = false,
   className,
+  placeholder,
   ...htmlProps
 }) => {
   const colorClasses: Record<string, string> = {
@@ -78,6 +80,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({
           .filter(Boolean)
           .join(" ")}
         disabled={disabled}
+        defaultValue=""
         {...htmlProps}
       >
         {options.map((option) => (

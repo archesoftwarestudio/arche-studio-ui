@@ -50,6 +50,7 @@ export default {
     ghost: false,
     disabled: false,
     withBadge: false,
+    type: "text",
   },
 } as Meta<TextInputProps>;
 
@@ -65,6 +66,13 @@ export const InputWithBorder: Story = {
   args: {
     placeholder: "Type your email",
     bordered: true,
+  },
+};
+
+export const PasswordInput: Story = {
+  args: {
+    placeholder: "Enter your password",
+    type: "password",
   },
 };
 

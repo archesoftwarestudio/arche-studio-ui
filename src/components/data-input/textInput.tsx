@@ -90,15 +90,16 @@ export const TextInput: React.FC<TextInputProps> = ({
           type={isPasswordInput && showPassword ? "text" : type}
           placeholder={placeholder}
           disabled={disabled}
-          className="grow h-full" // El input toma el ancho restante y asegura la altura completa
+          className="grow h-full"
           {...htmlProps}
         />
         {withBadge && <span className="badge badge-info">{badgeText}</span>}
         {isPasswordInput && (
           <button
             type="button"
-            onClick={() => setShowPassword(!setShowPassword)}
-            className="btn btn-ghost"
+            onClick={() => setShowPassword(!showPassword)}
+            className="btn btn-sm btn-ghost"
+            style={{ position: "relative", right: "-0.8rem" }}
           >
             {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
           </button>
