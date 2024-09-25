@@ -3,8 +3,6 @@ import React from "react";
 export interface SelectOption {
   value: string;
   label: string;
-  selected?: boolean; // Añadido para permitir selección predeterminada
-  disabled?: boolean; // Añadido para deshabilitar opciones específicas
 }
 
 export interface SelectInputProps extends React.ComponentProps<"select"> {
@@ -24,7 +22,6 @@ export interface SelectInputProps extends React.ComponentProps<"select"> {
   options: SelectOption[];
   containerWidth?: "w-full" | "w-1/2" | "w-1/3" | "w-1/4" | "w-auto";
   disabled?: boolean;
-  placeholder?: string;
 }
 
 export const SelectInput: React.FC<SelectInputProps> = ({
@@ -38,7 +35,6 @@ export const SelectInput: React.FC<SelectInputProps> = ({
   containerWidth = "w-full",
   disabled = false,
   className,
-  placeholder,
   ...htmlProps
 }) => {
   const colorClasses: Record<string, string> = {
@@ -80,16 +76,10 @@ export const SelectInput: React.FC<SelectInputProps> = ({
           .filter(Boolean)
           .join(" ")}
         disabled={disabled}
-        defaultValue=""
         {...htmlProps}
       >
         {options.map((option) => (
-          <option
-            key={option.value}
-            value={option.value}
-            disabled={option.disabled}
-            selected={option.selected}
-          >
+          <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}
