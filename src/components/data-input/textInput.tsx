@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MdVisibility, MdVisibilityOff } from "react-icons/md"; // Agregamos el ícono de cruz
+import { MdClose, MdVisibility, MdVisibilityOff } from "react-icons/md"; // Agregamos el ícono de cruz
 
 export interface TextInputProps extends React.ComponentProps<"input"> {
   label?: string; // Texto para el label
@@ -20,6 +20,7 @@ export interface TextInputProps extends React.ComponentProps<"input"> {
   customLabel?: string | React.ReactNode; // Texto o elemento personalizado en el label
   children?: React.ReactNode;
   containerWidth?: "w-full" | "w-1/2" | "w-1/3" | "w-1/4" | "w-auto"; // Ancho del contenedor
+  onClear?: () => void;
 }
 
 export const TextInput: React.FC<TextInputProps> = ({
@@ -36,6 +37,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   containerWidth = "w-full",
   className,
   type = "text",
+  onClear,
   ...htmlProps
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -94,11 +96,22 @@ export const TextInput: React.FC<TextInputProps> = ({
           {...htmlProps}
         />
 
+        {onClear && (
+          <button
+            type="button"
+            onClick={onClear}
+            className="btn btn-sm btn-ghost"
+            style={{ position: "relative", right: "-0.8rem" }}
+          >
+            {<MdClose />}
+          </button>
+        )}
+
         {isPasswordInput && (
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="btn btn-sm btn-ghost"
+            className="btn btn-sm btn-ghost "
             style={{ position: "relative", right: "-0.8rem" }}
           >
             {showPassword ? <MdVisibilityOff /> : <MdVisibility />}

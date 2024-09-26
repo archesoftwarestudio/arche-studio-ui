@@ -83,6 +83,14 @@ export const GhostInput: Story = {
   },
 };
 
+export const onClearInput: Story = {
+  args: {
+    onClear: () => {
+      console.log("Search something");
+    },
+  },
+};
+
 export const InputWithIcon: Story = {
   args: {
     placeholder: "Search",
