@@ -111,7 +111,6 @@ export const InputWithTextLabel: Story = {
 
 export const InputWithBadge: Story = {
   args: {
-    withBadge: true,
     badgeText: "Optional",
   },
 };
