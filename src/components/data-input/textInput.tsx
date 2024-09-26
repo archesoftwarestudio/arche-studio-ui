@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MdVisibility, MdVisibilityOff, MdClose } from "react-icons/md"; // Agregamos el ícono de cruz
+import { MdVisibility, MdVisibilityOff } from "react-icons/md"; // Agregamos el ícono de cruz
 
 export interface TextInputProps extends React.ComponentProps<"input"> {
   label?: string; // Texto para el label
@@ -18,8 +18,7 @@ export interface TextInputProps extends React.ComponentProps<"input"> {
   disabled?: boolean; // Deshabilitar el input
   icon?: React.ReactNode; // Icono dentro del input
   customLabel?: string | React.ReactNode; // Texto o elemento personalizado en el label
-  badgeText?: string; // Texto del badge
-  onBadgeRemove?: () => void; // Función para eliminar el badge
+  children?: React.ReactNode;
   containerWidth?: "w-full" | "w-1/2" | "w-1/3" | "w-1/4" | "w-auto"; // Ancho del contenedor
 }
 
@@ -33,8 +32,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   disabled = false,
   icon,
   customLabel,
-  badgeText = "",
-  onBadgeRemove, // Función que se ejecuta al eliminar el badge
+  children,
   containerWidth = "w-full",
   className,
   type = "text",
@@ -85,17 +83,12 @@ export const TextInput: React.FC<TextInputProps> = ({
       >
         {icon && <span className="icon">{icon}</span>}
         {customLabel && <span className="custom-label">{customLabel}</span>}
-        {badgeText && (
-          <div className="badge badge-info flex items-center">
-            {badgeText}
-            <button type="button" onClick={onBadgeRemove} className="ml-1">
-              <MdClose />
-            </button>
-          </div>
-        )}
+
+        {children}
+
         <input
           type={isPasswordInput && showPassword ? "text" : type}
-          placeholder={!badgeText ? placeholder : ""}
+          placeholder={children ? "" : placeholder}
           disabled={disabled}
           className="grow h-full"
           {...htmlProps}

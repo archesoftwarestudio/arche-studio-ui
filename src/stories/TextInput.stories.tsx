@@ -109,9 +109,9 @@ export const InputWithTextLabel: Story = {
   },
 };
 
-export const InputWithBadge: Story = {
+export const InputWithChildren: Story = {
   args: {
-    badgeText: "Optional",
+    children: <button>children</button>,
   },
 };
 
