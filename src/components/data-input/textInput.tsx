@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import { MdVisibility, MdVisibilityOff, MdClose } from "react-icons/md"; // Agregamos el ícono de cruz
 
 export interface TextInputProps extends React.ComponentProps<"input"> {
   label?: string; // Texto para el label
@@ -14,12 +14,12 @@ export interface TextInputProps extends React.ComponentProps<"input"> {
     | "error"; // Colores de DaisyUI
   bordered?: boolean; // Añadir borde
   ghost?: boolean; // Añadir estilo ghost
-  inputSize?: "xs" | "sm" | "md" | "lg"; // Tamaños responsivos, renombrado para evitar conflicto
+  inputSize?: "xs" | "sm" | "md" | "lg"; // Tamaños responsivos
   disabled?: boolean; // Deshabilitar el input
   icon?: React.ReactNode; // Icono dentro del input
   customLabel?: string | React.ReactNode; // Texto o elemento personalizado en el label
-  withBadge?: boolean; // Opción para mostrar un badge dentro del input
   badgeText?: string; // Texto del badge
+  onBadgeRemove?: () => void; // Función para eliminar el badge
   containerWidth?: "w-full" | "w-1/2" | "w-1/3" | "w-1/4" | "w-auto"; // Ancho del contenedor
 }
 
@@ -29,19 +29,19 @@ export const TextInput: React.FC<TextInputProps> = ({
   color,
   bordered = true,
   ghost = false,
-  inputSize = "md", // Tamaño por defecto
+  inputSize = "md",
   disabled = false,
   icon,
   customLabel,
-  withBadge = false,
   badgeText = "",
+  onBadgeRemove, // Función que se ejecuta al eliminar el badge
   containerWidth = "w-full",
   className,
   type = "text",
   ...htmlProps
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-  // Mapear las clases de color explícitas
+
   const colorClasses: Record<string, string> = {
     primary: "input-primary",
     secondary: "input-secondary",
@@ -52,7 +52,6 @@ export const TextInput: React.FC<TextInputProps> = ({
     error: "input-error",
   };
 
-  // Mapear las clases de tamaño explícitas
   const sizeClasses: Record<string, string> = {
     xs: "input-xs",
     sm: "input-sm",
@@ -61,7 +60,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   };
 
   const isPasswordInput = type === "password";
-  // Añadir clase `items-center` para alinear el contenido verticalmente
+
   return (
     <div className={`form-control ${containerWidth}`}>
       {label && (
@@ -72,13 +71,13 @@ export const TextInput: React.FC<TextInputProps> = ({
       <label
         className={[
           "input",
-          "flex", // Asegurar que el contenido esté alineado en flexbox
-          "items-center", // Centrar verticalmente el contenido
-          "gap-2", // Añadir un espacio entre el icono y el input
+          "flex", // Para alinear el contenido
+          "items-center",
+          "gap-2", // Añadir espacio entre elementos
           bordered ? "input-bordered" : "",
           ghost ? "input-ghost" : "",
           color ? colorClasses[color] : "",
-          sizeClasses[inputSize], // Aplicar tamaño usando inputSize
+          sizeClasses[inputSize],
           className,
         ]
           .filter(Boolean)
@@ -86,14 +85,22 @@ export const TextInput: React.FC<TextInputProps> = ({
       >
         {icon && <span className="icon">{icon}</span>}
         {customLabel && <span className="custom-label">{customLabel}</span>}
+        {badgeText && (
+          <div className="badge badge-info flex items-center">
+            {badgeText}
+            <button type="button" onClick={onBadgeRemove} className="ml-1">
+              <MdClose />
+            </button>
+          </div>
+        )}
         <input
           type={isPasswordInput && showPassword ? "text" : type}
-          placeholder={placeholder}
+          placeholder={!badgeText ? placeholder : ""}
           disabled={disabled}
           className="grow h-full"
           {...htmlProps}
         />
-        {withBadge && <span className="badge badge-info">{badgeText}</span>}
+
         {isPasswordInput && (
           <button
             type="button"
