@@ -95,3 +95,11 @@ export const ErrorBadge: Story = {
     color: "error",
   },
 };
+
+export const CloseButton: Story = {
+  args: {
+    onClose: () => {
+      console.log("hola");
+    },
+  },
+};

@@ -3,8 +3,6 @@ import React from "react";
 export interface SelectOption {
   value: string;
   label: string;
-  selected?: boolean; // Añadido para permitir selección predeterminada
-  disabled?: boolean; // Añadido para deshabilitar opciones específicas
 }
 
 export interface SelectInputProps extends React.ComponentProps<"select"> {
@@ -81,12 +79,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({
         {...htmlProps}
       >
         {options.map((option) => (
-          <option
-            key={option.value}
-            value={option.value}
-            disabled={option.disabled}
-            selected={option.selected}
-          >
+          <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}

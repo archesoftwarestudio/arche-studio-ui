@@ -56,8 +56,6 @@ export const DefaultSelect: Story = {
       {
         value: "",
         label: "Pick your favorite",
-        selected: true,
-        disabled: true,
       },
       { value: "homer", label: "Homer" },
       { value: "marge", label: "Marge" },
@@ -73,7 +71,7 @@ export const SelectWithBorder: Story = {
     label: "Who shot first?",
     bordered: true,
     options: [
-      { value: "han", label: "Han Solo", selected: true },
+      { value: "han", label: "Han Solo" },
       { value: "greedo", label: "Greedo" },
     ],
   },
@@ -86,7 +84,7 @@ export const GhostSelect: Story = {
     options: [
       { value: "svelte", label: "Svelte" },
       { value: "vue", label: "Vue" },
-      { value: "react", label: "React", selected: true },
+      { value: "react", label: "React" },
     ],
   },
 };
@@ -97,10 +95,10 @@ export const FormControlWithLabels: Story = {
     bordered: true,
     options: [
       { value: "star-wars", label: "Star Wars" },
-      { value: "harry-potter", label: "Harry Potter", disabled: true },
+      { value: "harry-potter", label: "Harry Potter" },
       { value: "lord-of-rings", label: "Lord of the Rings" },
       { value: "planet-apes", label: "Planet of the Apes" },
-      { value: "star-trek", label: "Star Trek", selected: true },
+      { value: "star-trek", label: "Star Trek" },
     ],
   },
 };
@@ -111,7 +109,7 @@ export const PrimarySelect: Story = {
     color: "primary",
     options: [
       { value: "got", label: "Game of Thrones" },
-      { value: "lost", label: "Lost", selected: true },
+      { value: "lost", label: "Lost" },
       { value: "breakingbad", label: "Breaking Bad" },
       { value: "walkingdead", label: "Walking Dead" },
     ],
@@ -126,7 +124,7 @@ export const SecondarySelect: Story = {
       { value: "java", label: "Java" },
       { value: "go", label: "Go" },
       { value: "c", label: "C" },
-      { value: "csharp", label: "C#", selected: true },
+      { value: "csharp", label: "C#" },
       { value: "cpp", label: "C++" },
       { value: "rust", label: "Rust" },
       { value: "javascript", label: "JavaScript" },
@@ -142,7 +140,7 @@ export const AccentSelect: Story = {
     options: [
       { value: "auto", label: "Auto" },
       { value: "dark", label: "Dark mode" },
-      { value: "light", label: "Light mode", selected: true },
+      { value: "light", label: "Light mode" },
     ],
   },
 };
@@ -153,7 +151,7 @@ export const InfoSelect: Story = {
     color: "info",
     options: [
       { value: "english", label: "English" },
-      { value: "japanese", label: "Japanese", selected: true },
+      { value: "japanese", label: "Japanese" },
       { value: "italian", label: "Italian" },
     ],
   },
@@ -167,10 +165,10 @@ export const SuccessSelect: Story = {
       { value: "one-piece", label: "One Piece" },
       { value: "naruto", label: "Naruto" },
       { value: "death-note", label: "Death Note" },
-      { value: "aot", label: "Attack on Titan", selected: true },
+      { value: "aot", label: "Attack on Titan" },
       { value: "bleach", label: "Bleach" },
       { value: "fma", label: "Fullmetal Alchemist" },
-      { value: "jojo", label: "Jojo's Bizarre Adventure", disabled: true },
+      { value: "jojo", label: "Jojo's Bizarre Adventure" },
     ],
   },
 };
@@ -182,9 +180,9 @@ export const WarningSelect: Story = {
     options: [
       { value: "cheese", label: "Cheese" },
       { value: "veggie", label: "Veggie" },
-      { value: "pepperoni", label: "Pepperoni", selected: true },
+      { value: "pepperoni", label: "Pepperoni" },
       { value: "margherita", label: "Margherita" },
-      { value: "hawaiian", label: "Hawaiian", disabled: true },
+      { value: "hawaiian", label: "Hawaiian" },
     ],
   },
 };
@@ -195,9 +193,9 @@ export const ErrorSelect: Story = {
     color: "error",
     options: [
       { value: "strapi", label: "Strapi" },
-      { value: "ghost", label: "Ghost", selected: true },
+      { value: "ghost", label: "Ghost" },
       { value: "netlify-cms", label: "Netlify CMS" },
-      { value: "sanity", label: "Sanity", disabled: true },
+      { value: "sanity", label: "Sanity" },
     ],
   },
 };
@@ -210,7 +208,7 @@ export const LargeSelect: Story = {
     options: [
       { value: "large-apple", label: "Large Apple" },
       { value: "large-orange", label: "Large Orange" },
-      { value: "large-tomato", label: "Large Tomato", selected: true },
+      { value: "large-tomato", label: "Large Tomato" },
     ],
   },
 };
@@ -221,9 +219,9 @@ export const SmallSelect: Story = {
     inputSize: "sm",
     bordered: true,
     options: [
-      { value: "small-apple", label: "Small Apple", disabled: true },
+      { value: "small-apple", label: "Small Apple" },
       { value: "small-orange", label: "Small Orange" },
-      { value: "small-tomato", label: "Small Tomato", selected: true },
+      { value: "small-tomato", label: "Small Tomato" },
     ],
   },
 };
@@ -235,7 +233,7 @@ export const ExtraSmallSelect: Story = {
     bordered: true,
     options: [
       { value: "tiny-apple", label: "Tiny Apple" },
-      { value: "tiny-orange", label: "Tiny Orange", selected: true },
+      { value: "tiny-orange", label: "Tiny Orange" },
       { value: "tiny-tomato", label: "Tiny Tomato" },
     ],
   },

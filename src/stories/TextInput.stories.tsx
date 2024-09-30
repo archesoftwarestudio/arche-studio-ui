@@ -50,6 +50,7 @@ export default {
     ghost: false,
     disabled: false,
     withBadge: false,
+    type: "text",
   },
 } as Meta<TextInputProps>;
 
@@ -68,10 +69,25 @@ export const InputWithBorder: Story = {
   },
 };
 
+export const PasswordInput: Story = {
+  args: {
+    placeholder: "Enter your password",
+    type: "password",
+  },
+};
+
 export const GhostInput: Story = {
   args: {
     placeholder: "Search something",
     ghost: true,
+  },
+};
+
+export const onClearInput: Story = {
+  args: {
+    onClear: () => {
+      console.log("Search something");
+    },
   },
 };
 
@@ -101,10 +117,9 @@ export const InputWithTextLabel: Story = {
   },
 };
 
-export const InputWithBadge: Story = {
+export const InputWithChildren: Story = {
   args: {
-    withBadge: true,
-    badgeText: "Optional",
+    children: <button>children</button>,
   },
 };
 
