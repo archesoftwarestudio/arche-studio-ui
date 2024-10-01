@@ -73,12 +73,11 @@ export const Dropdown: React.FC<DropdownProps> = (props: DropdownProps) => {
     "extra-small": "w-3 h-3",
   };
 
+  const buttonShape = label ? "flex items-center space-x-1" : "btn-square";
+
   return (
     <div className={dropdownClass} {...htmlProps}>
-      <div
-        tabIndex={0}
-        className={clsx("btn flex items-center space-x-1", buttonSizes[size])}
-      >
+      <div tabIndex={0} className={clsx("btn", buttonShape, buttonSizes[size])}>
         {icon && <span className={clsx("icon", iconSizes[size])}>{icon}</span>}
         {label && <span>{label}</span>}
       </div>
