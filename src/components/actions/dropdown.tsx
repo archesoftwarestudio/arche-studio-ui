@@ -18,6 +18,8 @@ export interface DropdownProps extends React.ComponentProps<"div"> {
   compact?: boolean;
   shadow?: boolean;
   icon?: React.ReactNode;
+  size?: "large" | "medium" | "small" | "extra-small";
+  optionBackgroundColor?: string;
 }
 
 export const Dropdown: React.FC<DropdownProps> = (props: DropdownProps) => {
@@ -25,6 +27,7 @@ export const Dropdown: React.FC<DropdownProps> = (props: DropdownProps) => {
     label,
     items,
     position = "bottom",
+    size = "medium",
     hover = false,
     focus = false,
     end = false,
@@ -33,6 +36,7 @@ export const Dropdown: React.FC<DropdownProps> = (props: DropdownProps) => {
     shadow = true,
     className,
     icon,
+    optionBackgroundColor = "transparent",
     ...htmlProps
   } = props;
 
@@ -55,18 +59,45 @@ export const Dropdown: React.FC<DropdownProps> = (props: DropdownProps) => {
     "w-52": !compact,
   });
 
+  const buttonSizes = {
+    large: "btn-lg",
+    medium: "btn-md",
+    small: "btn-sm",
+    "extra-small": "btn-xs",
+  };
+
+  const iconSizes = {
+    large: "w-6 h-6",
+    medium: "w-5 h-5",
+    small: "w-4 h-4",
+    "extra-small": "w-3 h-3",
+  };
+
   return (
     <div className={dropdownClass} {...htmlProps}>
-      <div tabIndex={0} className="btn m-1 flex items-center space-x-2">
-        {icon && <span className="icon">{icon}</span>}
+      <div
+        tabIndex={0}
+        className={clsx("btn flex items-center space-x-1", buttonSizes[size])}
+      >
+        {icon && <span className={clsx("icon", iconSizes[size])}>{icon}</span>}
         {label && <span>{label}</span>}
       </div>
 
-      <ul tabIndex={0} className={dropdownContentClass}>
+      <ul
+        tabIndex={0}
+        className={dropdownContentClass}
+        style={{ backgroundColor: optionBackgroundColor }}
+      >
         {items.map((item, index) => (
           <li key={index} onClick={item.onClick}>
-            {item?.icon && <span className="icon">{item?.icon}</span>}
-            <a>{item.text}</a>
+            <a>
+              {item?.icon && (
+                <span className={clsx("icon", iconSizes[size])}>
+                  {item.icon}
+                </span>
+              )}
+              {item.text}
+            </a>
           </li>
         ))}
       </ul>

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Dropdown, DropdownProps } from "../components/actions";
-import { MdMoreHoriz } from "react-icons/md";
+import { MdMoreHoriz, MdSell } from "react-icons/md";
 
 export default {
   title: "Actions/Dropdown",
@@ -36,7 +36,17 @@ export const Icon: Story = {
   args: {
     position: "bottom",
     label: "",
+    size: "small",
     icon: <MdMoreHoriz />,
+    items: [
+      {
+        text: "Caracteristicas del plan",
+        icon: <MdSell />,
+        onClick: () => {
+          console.log("hola");
+        },
+      },
+    ],
   },
 };
 
