@@ -8,7 +8,7 @@ type DropdownItemProps = {
 };
 
 export interface DropdownProps extends React.ComponentProps<"div"> {
-  label: string;
+  label?: string;
   items: DropdownItemProps[];
   position?: "top" | "bottom" | "left" | "right";
   hover?: boolean;
@@ -58,9 +58,11 @@ export const Dropdown: React.FC<DropdownProps> = (props: DropdownProps) => {
   return (
     <div className={dropdownClass} {...htmlProps}>
       {icon && <span className="icon">{icon}</span>}
-      <label tabIndex={0} className="btn m-1">
-        {label}
-      </label>
+      {label && (
+        <label tabIndex={0} className="btn m-1">
+          {label}
+        </label>
+      )}
       <ul tabIndex={0} className={dropdownContentClass}>
         {items.map((item, index) => (
           <li key={index} onClick={item.onClick}>
