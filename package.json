@@ -1,7 +1,7 @@
 {
   "name": "arche-ui-studio",
   "private": false,
-  "version": "0.1.34",
+  "version": "0.1.35",
   "main": "dist/arche-studio-ui.es.js",
   "module": "dist/arche-studio-ui.umd.js",
   "type": "module",
