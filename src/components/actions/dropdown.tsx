@@ -3,6 +3,7 @@ import React from "react";
 
 type DropdownItemProps = {
   text: string;
+  icon?: React.ReactNode;
   onClick: () => void;
 };
 
@@ -16,6 +17,7 @@ export interface DropdownProps extends React.ComponentProps<"div"> {
   rounded?: boolean;
   compact?: boolean;
   shadow?: boolean;
+  icon?: React.ReactNode;
 }
 
 export const Dropdown: React.FC<DropdownProps> = (props: DropdownProps) => {
@@ -30,6 +32,7 @@ export const Dropdown: React.FC<DropdownProps> = (props: DropdownProps) => {
     compact = false,
     shadow = true,
     className,
+    icon,
     ...htmlProps
   } = props;
 
@@ -54,13 +57,15 @@ export const Dropdown: React.FC<DropdownProps> = (props: DropdownProps) => {
 
   return (
     <div className={dropdownClass} {...htmlProps}>
+      {icon && <span className="icon">{icon}</span>}
       <label tabIndex={0} className="btn m-1">
         {label}
       </label>
       <ul tabIndex={0} className={dropdownContentClass}>
         {items.map((item, index) => (
-          <li key={index}>
-            <a onClick={item.onClick}>{item.text}</a>
+          <li key={index} onClick={item.onClick}>
+            {item?.icon && <span className="icon">{item?.icon}</span>}
+            <a>{item.text}</a>
           </li>
         ))}
       </ul>
