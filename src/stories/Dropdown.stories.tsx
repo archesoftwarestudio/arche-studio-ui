@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Dropdown, DropdownProps } from "../components/actions";
+import { MdMoreHoriz } from "react-icons/md";
 
 export default {
   title: "Actions/Dropdown",
@@ -8,7 +9,9 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {},
+  argTypes: {
+    icon: { control: "text" },
+  },
   args: {
     label: "Dropdown",
     items: [
@@ -26,6 +29,14 @@ type Story = StoryObj<DropdownProps>;
 export const Default: Story = {
   args: {
     position: "bottom", // Posición por defecto
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    position: "bottom",
+    label: "",
+    icon: <MdMoreHoriz />,
   },
 };
 

@@ -57,12 +57,11 @@ export const Dropdown: React.FC<DropdownProps> = (props: DropdownProps) => {
 
   return (
     <div className={dropdownClass} {...htmlProps}>
-      {icon && <span className="icon">{icon}</span>}
-      {label && (
-        <label tabIndex={0} className="btn m-1">
-          {label}
-        </label>
-      )}
+      <div tabIndex={0} className="btn m-1 flex items-center space-x-2">
+        {icon && <span className="icon">{icon}</span>}
+        {label && <span>{label}</span>}
+      </div>
+
       <ul tabIndex={0} className={dropdownContentClass}>
         {items.map((item, index) => (
           <li key={index} onClick={item.onClick}>
