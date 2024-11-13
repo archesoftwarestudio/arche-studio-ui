@@ -6,9 +6,13 @@ interface TabCustomStyles extends React.CSSProperties {
   "--tab-text-color"?: string;
 }
 
+// Extender el tipo TabItem para soportar el formato anterior
 interface TabItem {
   label: React.ReactNode;
-  content: React.ReactNode;
+  content?: React.ReactNode;
+  icon?: React.ReactNode;
+  onClick?: (event: React.MouseEvent) => void;
+  isActive?: boolean;
   disabled?: boolean;
   customStyles?: TabCustomStyles;
 }
@@ -24,7 +28,7 @@ export interface TabsProps extends React.ComponentProps<"div"> {
   size?: Size;
   className?: string;
   useRadio?: boolean;
-  name?: string; // Para los inputs de tipo radio
+  name?: string;
 }
 
 export const Tabs: React.FC<TabsProps> = ({
@@ -38,7 +42,12 @@ export const Tabs: React.FC<TabsProps> = ({
   name,
   ...divProps
 }) => {
-  const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
+  // Determinar el índice activo inicial basado en `isActive` o `defaultActiveIndex`
+  const [activeIndex, setActiveIndex] = useState(
+    items.findIndex((item) => item.isActive) !== -1
+      ? items.findIndex((item) => item.isActive)
+      : defaultActiveIndex
+  );
 
   useEffect(() => {
     if (activeIndex >= items.length) {
@@ -46,8 +55,18 @@ export const Tabs: React.FC<TabsProps> = ({
     }
   }, [items, activeIndex]);
 
-  const handleTabChange = (index: number) => {
-    if (!items[index].disabled) {
+  const handleTabChange = (
+    index: number,
+    event?: React.MouseEvent | React.ChangeEvent
+  ) => {
+    const item = items[index];
+    if (item.disabled) return;
+
+    if (item.onClick) {
+      // Si el tab tiene `onClick`, se llama a esta función
+      item.onClick(event as React.MouseEvent);
+    } else {
+      // Cambiar el tab activo
       setActiveIndex(index);
       if (onTabChange) {
         onTabChange(index);
@@ -81,7 +100,7 @@ export const Tabs: React.FC<TabsProps> = ({
     <div {...divProps}>
       <div role="tablist" className={finalClassName}>
         {items.map((item, index) => {
-          const isActive = index === activeIndex;
+          const isActive = item.isActive ?? index === activeIndex;
           const tabClasses = [
             "tab",
             isActive ? "tab-active" : "",
@@ -89,6 +108,13 @@ export const Tabs: React.FC<TabsProps> = ({
           ]
             .filter(Boolean)
             .join(" ");
+
+          const labelContent = (
+            <>
+              {item.icon && <span className="mr-2">{item.icon}</span>}
+              {item.label}
+            </>
+          );
 
           if (useRadio) {
             return (
@@ -100,7 +126,7 @@ export const Tabs: React.FC<TabsProps> = ({
                   className={tabClasses}
                   aria-label={item.label as string}
                   checked={isActive}
-                  onChange={() => handleTabChange(index)}
+                  onChange={(event) => handleTabChange(index, event)}
                   disabled={item.disabled}
                   style={item.customStyles}
                 />
@@ -119,12 +145,12 @@ export const Tabs: React.FC<TabsProps> = ({
                 key={index}
                 role="tab"
                 className={tabClasses}
-                onClick={() => handleTabChange(index)}
+                onClick={(event) => handleTabChange(index, event)}
                 aria-selected={isActive}
                 aria-disabled={item.disabled}
                 style={item.customStyles}
               >
-                {item.label}
+                {labelContent}
               </button>
             );
           }
