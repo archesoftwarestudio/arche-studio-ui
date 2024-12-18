@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface DrawerProps {
   sideContent?: React.ReactNode;
   children?: React.ReactNode;
@@ -14,25 +12,15 @@ export const Drawer: React.FC<DrawerProps> = ({
   onClose,
 }) => {
   return (
-    <div className="drawer">
-      <input
-        id="my-drawer"
-        type="checkbox"
-        className="drawer-toggle"
-        defaultChecked={open}
-        onChange={() => onClose?.()}
-      />
-
+    <div className={`drawer ${open ? "drawer-open" : ""}`}>
       <div className="drawer-content">{children}</div>
 
-      <div className="drawer-side">
-        <label
-          htmlFor="my-drawer"
-          aria-label="close sidebar"
-          className="drawer-overlay"
-        ></label>
-        {sideContent}
-      </div>
+      {open && (
+        <div className="drawer-side">
+          <label className="drawer-overlay" onClick={onClose}></label>
+          {sideContent}
+        </div>
+      )}
     </div>
   );
 };
