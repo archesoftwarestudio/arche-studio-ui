@@ -4,12 +4,14 @@ export interface DrawerProps {
   sideContent?: React.ReactNode;
   children?: React.ReactNode;
   open?: boolean;
+  onClose?: () => void;
 }
 
 export const Drawer: React.FC<DrawerProps> = ({
   sideContent,
   children,
   open = false,
+  onClose,
 }) => {
   return (
     <div className="drawer">
@@ -18,6 +20,7 @@ export const Drawer: React.FC<DrawerProps> = ({
         type="checkbox"
         className="drawer-toggle"
         defaultChecked={open}
+        onChange={() => onClose?.()}
       />
 
       <div className="drawer-content">{children}</div>
