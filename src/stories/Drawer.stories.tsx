@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Drawer, DrawerProps } from "../components/layout";
+import { useState } from "react";
 
 // Definición de meta para Storybook
 export default {
@@ -9,7 +10,25 @@ export default {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
-  argTypes: {},
+  argTypes: {
+    open: {
+      control: "boolean",
+      description: "Controla si el Drawer está abierto o cerrado",
+      defaultValue: false,
+    },
+    sideContent: {
+      control: false,
+      description: "Contenido del menú lateral",
+    },
+    children: {
+      control: false,
+      description: "Contenido principal de la aplicación",
+    },
+    onClose: {
+      action: "onClose",
+      description: "Callback para manejar el cierre del Drawer",
+    },
+  },
 } as Meta<DrawerProps>;
 
 type Story = StoryObj<DrawerProps>;
@@ -42,28 +61,47 @@ const defaultChildren = (
   </div>
 );
 
-// Story: Drawer básico
 export const Basic: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false); // Estado inicial directamente en la historia
+    return (
+      <div>
+        <button className="btn btn-primary m-4" onClick={() => setIsOpen(true)}>
+          Abrir Drawer
+        </button>
+        <Drawer {...args} open={isOpen} onClose={() => setIsOpen(false)} />
+      </div>
+    );
+  },
   args: {
     sideContent: defaultSideContent,
     children: defaultChildren,
-    open: false,
   },
 };
 
-// Story: Drawer abierto por defecto
 export const OpenByDefault: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(true); // Estado inicial abierto
+    return (
+      <div>
+        <button className="btn btn-primary m-4" onClick={() => setIsOpen(true)}>
+          Abrir Drawer
+        </button>
+        <Drawer {...args} open={isOpen} onClose={() => setIsOpen(false)} />
+      </div>
+    );
+  },
   args: {
     sideContent: defaultSideContent,
     children: defaultChildren,
-    open: true,
   },
 };
 
-// Story: Drawer con contenido personalizado
+/// Story: Drawer con contenido personalizado
 export const CustomSideContent: Story = {
-  args: {
-    sideContent: (
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false); // Estado inicial directamente en la historia
+    const sideContent = (
       <div className="p-4 w-80 bg-secondary text-secondary-content">
         <h2 className="text-xl font-bold">Menú Personalizado</h2>
         <ul className="menu">
@@ -80,8 +118,31 @@ export const CustomSideContent: Story = {
             <a href="#">Configuración</a>
           </li>
         </ul>
+        {/* Botón para cerrar el Drawer */}
+        <button
+          className="btn btn-outline mt-4"
+          onClick={() => setIsOpen(false)} // Utilizar setIsOpen aquí
+        >
+          Cerrar Drawer
+        </button>
       </div>
-    ),
+    );
+
+    return (
+      <div>
+        <button className="btn btn-primary m-4" onClick={() => setIsOpen(true)}>
+          Abrir Drawer
+        </button>
+        <Drawer
+          {...args}
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+          sideContent={sideContent}
+        />
+      </div>
+    );
+  },
+  args: {
     children: (
       <div className="p-4">
         <h1 className="text-3xl font-bold">Panel de Administración</h1>
@@ -90,12 +151,22 @@ export const CustomSideContent: Story = {
         </p>
       </div>
     ),
-    open: false,
   },
 };
 
 // Story: Drawer responsivo (solo botón en móviles)
 export const Responsive: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(true); // Estado inicial directamente en la historia
+    return (
+      <div>
+        <button className="btn btn-primary m-4" onClick={() => setIsOpen(true)}>
+          Abrir Drawer
+        </button>
+        <Drawer {...args} open={isOpen} onClose={() => setIsOpen(false)} />
+      </div>
+    );
+  },
   args: {
     sideContent: defaultSideContent,
     children: (
@@ -107,6 +178,5 @@ export const Responsive: Story = {
         </p>
       </div>
     ),
-    open: true,
   },
 };
