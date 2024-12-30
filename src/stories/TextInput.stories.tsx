@@ -169,6 +169,7 @@ export const ErrorInput: Story = {
   args: {
     placeholder: "Error input",
     color: "error",
+    errorMessage: "This is an error",
   },
 };
 

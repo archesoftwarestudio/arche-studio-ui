@@ -21,6 +21,7 @@ export interface TextInputProps extends React.ComponentProps<"input"> {
   children?: React.ReactNode;
   containerWidth?: "w-full" | "w-1/2" | "w-1/3" | "w-1/4" | "w-auto"; // Ancho del contenedor
   onClear?: () => void;
+  errorMessage?: string;
 }
 
 export const TextInput: React.FC<TextInputProps> = ({
@@ -38,6 +39,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   className,
   type = "text",
   onClear,
+  errorMessage,
   ...htmlProps
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -118,6 +120,10 @@ export const TextInput: React.FC<TextInputProps> = ({
           </button>
         )}
       </label>
+
+      {errorMessage && (
+        <span className="text-sm text-error mt-1">{errorMessage}</span>
+      )}
     </div>
   );
 };
