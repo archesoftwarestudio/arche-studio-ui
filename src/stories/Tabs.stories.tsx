@@ -106,6 +106,7 @@ export const BorderedTabs: Story = {
 export const LiftedTabs: Story = {
   args: {
     variant: "lifted",
+    useRadio: true,
     items: [
       { label: "Tab 1", content: <div>Content 1</div> },
       { label: "Tab 2", content: <div>Content 2</div> },

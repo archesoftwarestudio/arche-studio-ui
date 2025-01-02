@@ -96,6 +96,12 @@ export const Tabs: React.FC<TabsProps> = ({
     .filter(Boolean)
     .join(" ");
 
+  const contentClass = [
+    "tab-content",
+    variant === "lifted" ? "border-base-300 rounded-box p-6" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
   return (
     <div {...divProps}>
       <div role="tablist" className={finalClassName}>
@@ -103,6 +109,7 @@ export const Tabs: React.FC<TabsProps> = ({
           const isActive = item.isActive ?? index === activeIndex;
           const tabClasses = [
             "tab",
+            variant === "lifted" ? "" : "",
             isActive ? "tab-active" : "",
             item.disabled ? "tab-disabled" : "",
           ]
@@ -132,9 +139,8 @@ export const Tabs: React.FC<TabsProps> = ({
                 />
                 <div
                   role="tabpanel"
-                  className="tab-content p-4"
-                  hidden={!isActive}
-                >
+                  className={contentClass}
+                  hidden={!isActive}>
                   {item.content}
                 </div>
               </React.Fragment>
@@ -148,8 +154,7 @@ export const Tabs: React.FC<TabsProps> = ({
                 onClick={(event) => handleTabChange(index, event)}
                 aria-selected={isActive}
                 aria-disabled={item.disabled}
-                style={item.customStyles}
-              >
+                style={item.customStyles}>
                 {labelContent}
               </button>
             );
@@ -157,7 +162,9 @@ export const Tabs: React.FC<TabsProps> = ({
         })}
       </div>
       {!useRadio && (
-        <div className="tab-content p-4">{items[activeIndex]?.content}</div>
+        <div role="tabpanel" className={contentClass}>
+          {items[activeIndex]?.content}
+        </div>
       )}
     </div>
   );

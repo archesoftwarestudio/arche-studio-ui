@@ -10,6 +10,7 @@ export interface ThemeProps {
   "base-100": string;
   "base-200"?: string;
   "base-300"?: string;
+  "base-400"?: string;
   "base-content"?: string;
   info: string;
   "info-content"?: string;
@@ -44,9 +45,10 @@ export const Themes: ThemesProps = {
     "accent-content": "#ef7b45", // crayola o contenido legible
     neutral: "#364853", // charcoal
     "neutral-content": "#f0f0f0", // ex-frenchgray
-    "base-100": "#f6f7f8", // seasalt
-    "base-200": "#e5e6e9", // platinumshiny
-    "base-300": "#d4d5da", // platinum
+    "base-100": "#ffffff", // white
+    "base-200": "#f6f7f8", // seasalt
+    "base-300": "#e5e6e9", // platinumshiny
+    "base-400": "#d4d5da", // platinum
     "base-content": "#002129", // gunmetal
     info: "#b1b3bb", // frenchgray
     "info-content": "#ffffff", // contenido legible

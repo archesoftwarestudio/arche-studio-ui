@@ -51,8 +51,10 @@ export const Menu: React.FC<MenuProps> = ({
     layout === "mega"
       ? "xl:menu-horizontal bg-base-200 rounded-box lg:min-w-max"
       : responsive
-        ? `menu-${layout === "horizontal" ? "vertical lg:menu-horizontal" : layout}`
-        : `menu-${layout}`;
+      ? `menu-${
+          layout === "horizontal" ? "vertical lg:menu-horizontal" : layout
+        }`
+      : `menu-${layout}`;
 
   const finalClassName = [
     "menu",
@@ -87,7 +89,9 @@ export const Menu: React.FC<MenuProps> = ({
       .filter(Boolean)
       .join(" ");
     const linkClassName = [
-      active ? "active" : "",
+      active
+        ? "bg-base-300"
+        : "focus:bg-base-300 hover:bg-base-300 active:!bg-base-300 active:!text-primary",
       tooltip ? "tooltip tooltip-right" : "",
     ]
       .filter(Boolean)
